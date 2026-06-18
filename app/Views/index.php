@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
-        .btnReservar,.btnIniciarSesion {
+        .btnReservar {
             border: 1px solid #22324d;
             color: #38bdf8;
             background-color: transparent;
         }
 
-        .btnReservar:hover,.btnIniciarSesion:hover {
+        .btnReservar:hover {
             background-color: #1d5f7c !important;
             color: #ffffff !important;
             border-color: #1d5f7c !important;
@@ -26,16 +26,19 @@
 <body class="bg-dark">
     <?= view('templates/nav') ?>
     <?php if (isset($vehiculos)): ?>
+        <?php
+        $vehiculosLimitados = array_slice($vehiculos, 0, 5);
+        ?>
         <div id="carruselVehiculos" class="carousel slide shadow-lg rounded-bottom-4 overflow-hidden" data-bs-ride="carousel" style="max-width: 100%; margin: 0 auto; height:70vh;">
 
             <div class="carousel-indicators">
-                <?php foreach ($vehiculos as $index => $v) : ?>
+                <?php foreach ($vehiculosLimitados as $index => $v) : ?>
                     <button type="button" data-bs-target="#carruselVehiculos" data-bs-slide-to="<?= $index ?>" class="<?= $index === 0 ? 'active' : '' ?>" aria-current="<?= $index === 0 ? 'true' : 'false' ?>"></button>
                 <?php endforeach; ?>
             </div>
 
             <div class="carousel-inner" style="background-color: #0b0f19;">
-                <?php foreach ($vehiculos as $index => $v) : ?>
+                <?php foreach ($vehiculosLimitados as $index => $v) : ?>
                     <div class="carousel-item <?= $index === 0 ? 'active' : '' ?> position-relative" style="height: 70vh;">
 
                         <img src="<?= base_url('assets/images/' . $v['imagenVehiculo']) ?>" class="d-block w-100 h-100" alt="<?= $v['modeloVehiculo'] ?>" style="object-fit: cover; object-position: center;">
