@@ -56,4 +56,8 @@ class VehiculoModel extends Model
 
         return $this->update($idVehiculo, $datosBaja);
     }
+
+    public function mostrarVehiculosDisponibles(){
+        return $this->where('activoVehiculo', 1)->where('disponibleVehiculo', 1)->findAll();
+    }
 }

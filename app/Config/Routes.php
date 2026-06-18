@@ -3,9 +3,9 @@
 use CodeIgniter\Router\RouteCollection;
 
 /** @var RouteCollection $routes */
-$routes->get('/', 'Home::iniciarSesion');
+$routes->get('/', 'Usuario::index');
 
-$routes->get('login', 'Home::iniciarSesion');
+$routes->get('login', 'AuthController::login');
 
 $routes->post('login/verificar', 'AuthController::verificar');
 $routes->get('logout', 'AuthController::logout');

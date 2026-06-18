@@ -7,7 +7,8 @@ class Usuario extends BaseController
     public function index()
     {
         session();
-        return view('index');
+        $vehiculoModel = new \App\Models\VehiculoModel();
+        $data['vehiculos'] = $vehiculoModel->mostrarVehiculosDisponibles();
+        return view('index',$data);
     }
-
 }

@@ -20,12 +20,12 @@ class AuthController extends BaseController
             return $this->redireccionarSegunRol(session()->get('rolUsuario'));
         }
 
-        return view('auth/login');
+        return view('login');
     }
 
     public function verificar()
     {
-        
+
         $email    = $this->request->getPost('emailUsuario');
         $password = $this->request->getPost('passwordUsuario');
 
@@ -34,9 +34,9 @@ class AuthController extends BaseController
         if ($usuario) {
             $sessionData = [
                 'idUsuario'    => $usuario['idUsuario'],
-                'nombreUsuario'=> $usuario['nombreUsuario'],
+                'nombreUsuario' => $usuario['nombreUsuario'],
                 'emailUsuario' => $usuario['emailUsuario'],
-                'rolUsuario'   => $usuario['rolUsuario'], 
+                'rolUsuario'   => $usuario['rolUsuario'],
                 'isLoggedIn'   => true
             ];
 
@@ -59,7 +59,7 @@ class AuthController extends BaseController
         if ($rol == 'admin') {
             return redirect()->to('/admin/dashboard');
         }
-        
+
         return redirect()->to(base_url('vehiculos'));
     }
 }
