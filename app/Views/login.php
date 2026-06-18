@@ -76,7 +76,7 @@
                 </div>
 
                 <?php if (session()->getFlashdata('error')) : ?>
-                    <div class="alert alert-danger bg-danger bg-opacity-10 border-danger border-opacity-20 text-danger-emphasis small p-2" role="alert">
+                    <div class="alert alert-danger bg-danger bg-opacity-50 border-danger border-opacity-20 small p-2"style="color: #e2bebe;" role="alert">
                         <?= session()->getFlashdata('error') ?>
                     </div>
                 <?php endif; ?>

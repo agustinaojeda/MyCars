@@ -25,6 +25,7 @@ class AuthController extends BaseController
 
     public function verificar()
     {
+        
         $email    = $this->request->getPost('emailUsuario');
         $password = $this->request->getPost('passwordUsuario');
 
@@ -55,10 +56,10 @@ class AuthController extends BaseController
 
     private function redireccionarSegunRol($rol)
     {
-        if ($rol === 'Admin') {
-            return redirect()->to('/admin/dashboard')->with('success', 'Bienvenido al panel de control.');
+        if ($rol == 'admin') {
+            return redirect()->to('/admin/dashboard');
         }
         
-        return redirect()->to('/vehiculos')->with('success', '¡Hola! Qué bueno verte de nuevo.');
+        return redirect()->to(base_url('vehiculos'));
     }
 }
