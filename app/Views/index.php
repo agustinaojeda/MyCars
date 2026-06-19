@@ -248,7 +248,7 @@
         </div>
 
     <?php else: ?>
-        <p class="text-center p-4">Aún no hay vehículos disponibles</p>
+        <p class="text-center p-4">Aún no hay vehículos disponibles</p> 
     <?php endif; ?>
     <?= view('templates/footer') ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
