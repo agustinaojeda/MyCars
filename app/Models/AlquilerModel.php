@@ -86,4 +86,21 @@ class AlquilerModel extends Model
                     ->where('alquileres.estadoAlquiler', 'Activo')
                     ->findAll();
     }
+
+        // Función para obtener las reservas pendientes cruzando datos con usuarios y vehículos
+    public function obtenerReservasPendientes()
+    {
+        return $this->select('alquileres.*, usuario.nombreUsuario, usuario.emailUsuario, vehiculo.marcaVehiculo, vehiculo.modeloVehiculo, vehiculo.imagenVehiculo')
+                    ->join('usuario', 'alquileres.idClienteAlquiler = usuario.idUsuario')
+                    ->join('vehiculo', 'alquileres.idVehiculoAlquiler = vehiculo.idVehiculo')
+                    ->where('alquileres.estadoAlquiler', 'pendiente')
+                    ->findAll();
+    }
+
+    // Función para que el administrador apruebe la reserva
+    public function aprobarReserva($idAlquiler)
+    {
+        // Cambiamos el estado de pendiente a activo
+        return $this->update($idAlquiler, ['estadoAlquiler' => 'activo']);
+    }
 }

@@ -13,6 +13,12 @@ $routes->post('registrarse/verificar', 'AuthController::verificarRegistro');
 $routes->post('login/verificar', 'AuthController::verificar');
 $routes->get('logout', 'AuthController::logout');
 
-$routes->get('admin/dashboard','Admin::panel',['filter' => 'soloAdmin']);
+//$routes->get('admin/dashboard','Admin::panel',['filter' => 'soloAdmin']); POR AHORA lo dejo asi
+$routes->get('admin/dashboard', 'Admin::panel');
+// Ruta para cargar la pantalla de listado de reservas
+$routes->get('admin/reservas-pendientes', 'Admin::reservasPendientes');
+
+// Ruta para procesar la aprobación de una reserva individual
+$routes->get('admin/aprobar-reserva/(:num)', 'Admin::confirmarReserva/$1');
 
 $routes->get('vehiculos','Usuario::index');
