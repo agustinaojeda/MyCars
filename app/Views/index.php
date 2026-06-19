@@ -116,23 +116,23 @@
 
             <div class="row g-3 justify-content-center">
                 <div class="col-6 col-md-3">
-                    <a href="<?= base_url('/vehiculos?categoria=suv') ?>" class="btn btn-categoria w-100 py-3 rounded-3 text-white fw-medium border border-secondary border-opacity-20 d-flex flex-column align-items-center justify-content-center gap-2">
+                    <a href="<?= base_url('categoria/suv') ?>" class="btn btn-categoria w-100 py-3 rounded-3 text-white fw-medium border border-secondary border-opacity-20 d-flex flex-column align-items-center justify-content-center gap-2">
                         <span class="fs-5">SUV</span>
                     </a>
                 </div>
                 <div class="col-6 col-md-3">
-                    <a href="<?= base_url('/vehiculos?categoria=deportivo') ?>" class="btn btn-categoria w-100 py-3 rounded-3 text-white fw-medium border border-secondary border-opacity-20 d-flex flex-column align-items-center justify-content-center gap-2">
+                    <a href="<?= base_url('categoria/deportivo') ?>" class="btn btn-categoria w-100 py-3 rounded-3 text-white fw-medium border border-secondary border-opacity-20 d-flex flex-column align-items-center justify-content-center gap-2">
                         <span class="fs-5">Deportivo</span>
                     </a>
                 </div>
                 <div class="col-6 col-md-3">
-                    <a href="<?= base_url('/vehiculos?categoria=sedan') ?>" class="btn btn-categoria w-100 py-3 rounded-3 text-white fw-medium border border-secondary border-opacity-20 d-flex flex-column align-items-center justify-content-center gap-2">
+                    <a href="<?= base_url('categoria/sedan') ?>" class="btn btn-categoria w-100 py-3 rounded-3 text-white fw-medium border border-secondary border-opacity-20 d-flex flex-column align-items-center justify-content-center gap-2">
                         <span class="fs-5">Sedán</span>
                     </a>
                 </div>
                 <div class="col-6 col-md-3">
-                    <a href="<?= base_url('/vehiculos?categoria=camioneta') ?>" class="btn btn-categoria w-100 py-3 rounded-3 text-white fw-medium border border-secondary border-opacity-20 d-flex flex-column align-items-center justify-content-center gap-2">
-                        <span class="fs-5">Camioneta</span>
+                    <a href="<?= base_url('categoria/compacto') ?>" class="btn btn-categoria w-100 py-3 rounded-3 text-white fw-medium border border-secondary border-opacity-20 d-flex flex-column align-items-center justify-content-center gap-2">
+                        <span class="fs-5">Compacto</span>
                     </a>
                 </div>
             </div>
@@ -141,7 +141,7 @@
             <div class="row g-4">
 
                 <?php
-                $categoriasMostrar = ['suv', 'deportivo', 'sedan', 'camioneta'];
+                $categoriasMostrar = ['suv', 'deportivo', 'sedan', 'compacto'];
                 $tarjetasRenderizadas = 0;
 
                 foreach ($categoriasMostrar as $cat):

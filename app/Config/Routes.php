@@ -16,3 +16,5 @@ $routes->get('logout', 'AuthController::logout');
 $routes->get('admin/dashboard','Admin::panel',['filter' => 'soloAdmin']);
 
 $routes->get('vehiculos','Usuario::index');
+
+$routes->get('categoria/(:segment)', 'Vehiculo::categoria/$1');
