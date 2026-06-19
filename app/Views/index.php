@@ -9,16 +9,31 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
-        .btnReservar {
-            border: 1px solid #22324d;
-            color: #38bdf8;
-            background-color: transparent;
+        .btn-outline-custom {
+            background: transparent;
+            border: 1px solid rgba(13, 202, 240, 0.3);
         }
 
-        .btnReservar:hover {
-            background-color: #1d5f7c !important;
-            color: #ffffff !important;
-            border-color: #1d5f7c !important;
+        .btn-outline-custom:hover,
+        .btn-categoria:hover {
+            background: rgba(13, 202, 240, 0.05);
+            border-color: #0dcaf0 !important;
+            color: #fff !important;
+        }
+
+        .tracking-wider {
+            letter-spacing: 0.075em;
+        }
+
+        .btnVer {
+            background-color: #b5dafd;
+            color: #1c1b4b;
+            border: none;
+        }
+
+        .btnVer:hover {
+            background-color: #d6dcfe;
+            transform: translateX(3px);
         }
     </style>
 </head>
@@ -91,36 +106,65 @@
                 <span class="visually-hidden">Siguiente</span>
             </button>
         </div>
-        <div class="ms-4">
-            <h1 class="mt-4 text-white fw-bold">Vehículos disponibles</h1>
-            <p class="text-white ">Rendimiento de primera y lujo sin complicaciones. Encuentra el vehículo ideal para tu próximo viaje entre nuestra exclusiva selección de autos.</p>
-            <div class="container">
-                <div class="row g-4 justify-content-center p-3">
-                    <?php foreach ($vehiculos as $v) : ?>
-                        <div class="col-12 col-md-6 col-lg-4 ">
+        <div class="container my-5 py-2">
+            <div class="text-center mb-4">
+                <h3 class="text-white fw-bold position-relative d-inline-block pb-2">
+                    Explora nuestras categorías
+                    <span class="position-absolute bottom-0 start-50 translate-middle-x bg-info rounded" style="width: 50px; height: 3px;"></span>
+                </h3>
+            </div>
 
-                            <div class="card h-100 border-0 rounded-4 overflow-hidden position-relative shadow-lg" style="background-color: #0b0f16;">
+            <div class="row g-3 justify-content-center">
+                <div class="col-6 col-md-3">
+                    <a href="<?= base_url('/vehiculos?categoria=suv') ?>" class="btn btn-categoria w-100 py-3 rounded-3 text-white fw-medium border border-secondary border-opacity-20 d-flex flex-column align-items-center justify-content-center gap-2">
+                        <span class="fs-5">SUV</span>
+                    </a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a href="<?= base_url('/vehiculos?categoria=deportivo') ?>" class="btn btn-categoria w-100 py-3 rounded-3 text-white fw-medium border border-secondary border-opacity-20 d-flex flex-column align-items-center justify-content-center gap-2">
+                        <span class="fs-5">Deportivo</span>
+                    </a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a href="<?= base_url('/vehiculos?categoria=sedan') ?>" class="btn btn-categoria w-100 py-3 rounded-3 text-white fw-medium border border-secondary border-opacity-20 d-flex flex-column align-items-center justify-content-center gap-2">
+                        <span class="fs-5">Sedán</span>
+                    </a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a href="<?= base_url('/vehiculos?categoria=camioneta') ?>" class="btn btn-categoria w-100 py-3 rounded-3 text-white fw-medium border border-secondary border-opacity-20 d-flex flex-column align-items-center justify-content-center gap-2">
+                        <span class="fs-5">Camioneta</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="container my-5 pb-5">
+            <div class="row g-4">
 
-                                <div style="height: 200px; overflow: hidden;">
-                                    <img src="<?= base_url('assets/images/' . $v['imagenVehiculo']) ?>" class="w-100 h-100" alt="<?= $v['modeloVehiculo'] ?>" style="object-fit: cover; object-position: center;">
+                <?php
+                $categoriasMostrar = ['suv', 'deportivo', 'sedan', 'camioneta'];
+                $tarjetasRenderizadas = 0;
+
+                foreach ($categoriasMostrar as $cat):
+                    $v = isset($ultimosPorCategoria[$cat]) ? $ultimosPorCategoria[$cat] : null;
+                    if ($v):
+                        $tarjetasRenderizadas++;
+                ?>
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="card h-100 border border-secondary border-opacity-10 rounded-4 position-relative overflow-hidden flex-column justify-content-between" style="background: linear-gradient(145deg, rgba(20, 24, 33, 0.6) 0%, rgba(11, 15, 25, 0.8) 100%); backdrop-filter: blur(10px);">
+
+                                <div class="position-relative p-3">
+                                    <img src="<?= base_url('assets/images/' . $v['imagenVehiculo']) ?>" class="card-img-top rounded-4" alt="<?= $v['modeloVehiculo'] ?>" style="height: 200px; object-fit: cover;">
                                 </div>
 
-                                <div class="card-body p-4 d-flex flex-column justify-content-between text-white">
-
-                                    <div class="d-flex justify-content-between align-items-start mb-4">
+                                <div class="card-body px-4 pt-0 pb-3">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
                                         <div>
-                                            <span class="text-uppercase fw-bold tracking-wider small d-block" style="font-size: 0.75rem; letter-spacing: 1px;">
-                                                <?= $v['marcaVehiculo'] ?>
-                                            </span>
-                                            <h4 class="fw-bold text-white my-1" style="font-size: 1.35rem;">
-                                                <?= $v['modeloVehiculo'] ?>
-                                            </h4>
+                                            <span class="text-uppercase text-secondary fw-bold tracking-wider" style="font-size: 0.65rem; letter-spacing: 1px;"><?= $v['marcaVehiculo'] ?></span>
+                                            <h4 class="text-white fw-bold mb-0 fs-5"><?= $v['modeloVehiculo'] ?></h4>
                                         </div>
                                         <div class="text-end">
-                                            <span class="fs-4 fw-bold" style="color: #cbd5e1;">
-                                                $<?= number_format($v['precioAlqVehiculo'], 0, ',', '.') ?>
-                                            </span>
-                                            <span class="small d-block" style="font-size: 0.75rem;color: #cbd5e1;">por día</span>
+                                            <span class="fs-5 fw-bold text-info">$<?= number_format($v['precioAlqVehiculo'], 0, ',', '.') ?></span>
+                                            <span class="text-secondary d-block" style="font-size: 0.7rem; margin-top: -3px;">por día</span>
                                         </div>
                                     </div>
 
@@ -131,7 +175,7 @@
                                                 <div class="text-white me-2 p-1 rounded bg-dark bg-opacity-20"><i class="bi bi-person p-1"></i></div>
                                                 <div>
                                                     <span class="text-white d-block" style="font-size: 0.65rem; text-transform: uppercase;">Asientos</span>
-                                                    <span class="fw-semibold small" style="font-size: 0.8rem;"><?= $v['nroPlazasVehiculo'] ?> Personas</span>
+                                                    <span class="fw-semibold small text-white" style="font-size: 0.8rem;"><?= $v['nroPlazasVehiculo'] ?> Personas</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -141,7 +185,7 @@
                                                 <div class="text-white me-2 p-1 rounded bg-dark bg-opacity-20"><i class="bi bi-lightning-charge p-1"></i></div>
                                                 <div>
                                                     <span class="text-white d-block" style="font-size: 0.65rem; text-transform: uppercase;">Motor</span>
-                                                    <span class="fw-semibold small text-truncate d-block" style="font-size: 0.8rem; max-width: 90px;"><?= $v['motorVehiculo'] ?></span>
+                                                    <span class="text-white fw-semibold small text-truncate d-block" style="font-size: 0.8rem; max-width: 90px;"><?= $v['motorVehiculo'] ?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -151,7 +195,7 @@
                                                 <div class="text-white me-2 p-1 rounded bg-dark bg-opacity-20"><i class="bi bi-calendar3 p-1"></i></div>
                                                 <div>
                                                     <span class="text-white d-block" style="font-size: 0.65rem; text-transform: uppercase;">Año</span>
-                                                    <span class="fw-semibold small" style="font-size: 0.8rem;"><?= $v['anioVehiculo'] ?></span>
+                                                    <span class=" text-white fw-semibold small" style="font-size: 0.8rem;"><?= $v['anioVehiculo'] ?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -161,25 +205,48 @@
                                                 <div class="text-white me-2 p-1 rounded bg-dark bg-opacity-20"><i class="bi bi-speedometer2 p-1"></i></div>
                                                 <div>
                                                     <span class="text-white d-block" style="font-size: 0.65rem; text-transform: uppercase;">Kilometraje</span>
-                                                    <span class="fw-semibold small" style="font-size: 0.8rem;"><?= number_format($v['kilometrajeVehiculo'], 0, ',', '.') ?> km</span>
+                                                    <span class="text-white fw-semibold small" style="font-size: 0.8rem;"><?= number_format($v['kilometrajeVehiculo'], 0, ',', '.') ?> km</span>
                                                 </div>
                                             </div>
                                         </div>
 
                                     </div>
 
-                                    <a href="#" class="btn w-100 py-2 rounded-3 fw-semibold transition-all btnReservar">
-                                        Reservar vehículo
-                                    </a>
+                                </div>
 
+                                <div class="px-4 pb-4">
+                                    <a href="<?= base_url('/vehiculos/detalle/' . $v['idVehiculo']) ?>" class="btn w-100 py-2 rounded-3 fw-medium transition-all <?= 'btn-outline-custom text-info' ?>" style="font-size: 0.85rem;">
+                                        Ver categoría <?= $v['categoriaVehiculo'] ?>
+                                    </a>
                                 </div>
                             </div>
-
                         </div>
-                    <?php endforeach; ?>
+                <?php
+                    endif;
+                endforeach;
+                ?>
+
+                <div class="col-12 col-md-6 col-lg-8">
+                    <div class="card h-100 border border-secondary border-opacity-10 rounded-4 position-relative overflow-hidden p-4 p-md-5 d-flex flex-column justify-content-center align-items-start"
+                        style="background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.85)), url('https://images.pexels.com/photos/13633258/pexels-photo-13633258.jpeg?_gl=1*1erdxoz*_ga*MTk1Mzc0MzcyLjE3NzEyNzYyOTA.*_ga_8JE65Q40S6*czE3ODE4Mzg0NTEkbzQkZzEkdDE3ODE4Mzg0NzYkajM1JGwwJGgw') center/cover no-repeat; min-height: 320px;">
+
+                        <h2 class="display-6 fw-bold text-white mb-3" style="max-width: 450px; line-height: 1.2;">
+                            El vehículo perfecto para tu próxima historia
+                        </h2>
+
+                        <p class="text-white-50 mb-4 fw-light fs-6" style="max-width: 500px;">
+                            Desde la potencia de un deportivo hasta la comodidad de una SUV para toda la familia. Recorré nuestro catálogo completo y encontrá el andar que se adapta a tu próximo destino.
+                        </p>
+
+                        <a href="<?= base_url('/vehiculos') ?>" class="btn btnVer px-4 py-2.5 rounded-3 fw-medium d-flex align-items-center gap-2 transition-all">
+                            Ver toda la flota<i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
+
             </div>
         </div>
+
     <?php else: ?>
         <p class="text-center p-4">Aún no hay vehículos disponibles</p>
     <?php endif; ?>

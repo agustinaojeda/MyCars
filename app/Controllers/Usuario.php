@@ -8,7 +8,20 @@ class Usuario extends BaseController
     {
         session();
         $vehiculoModel = new \App\Models\VehiculoModel();
-        $data['vehiculos'] = $vehiculoModel->mostrarVehiculosDisponibles();
-        return view('index',$data);
+        $vehiculos = $vehiculoModel->mostrarVehiculosDisponibles();
+        $ultimosPorCategoria = [];
+        if (!empty($vehiculos)) {
+            foreach ($vehiculos as $v) {
+                $cat = strtolower($v['categoriaVehiculo']);
+                if (!isset($ultimosPorCategoria[$cat])) {
+                    $ultimosPorCategoria[$cat] = $v;
+                }
+            }
+        }
+
+        $data['vehiculos'] = $vehiculos;
+        $data['ultimosPorCategoria'] = $ultimosPorCategoria;
+
+        return view('index', $data);
     }
 }
