@@ -6,6 +6,9 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Usuario::index');
 
 $routes->get('login', 'AuthController::login');
+$routes->get('registrarse', 'AuthController::registro');
+
+$routes->post('registrarse/verificar', 'AuthController::verificarRegistro');
 
 $routes->post('login/verificar', 'AuthController::verificar');
 $routes->get('logout', 'AuthController::logout');
