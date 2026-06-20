@@ -68,10 +68,12 @@
                         del negocio.
                     </p>
                     <div class="d-flex flex-column gap-2 mt-auto">
-                        <a href="#" class="btn btn-outline-custom w-100 text-start">
+                        <a href="<?= base_url('admin/reporte-clientes-vehiculo') ?>"
+                            class="btn btn-outline-custom w-100 text-start">
                             <i class="bi bi-people me-2"></i>Clientes por Vehículo
                         </a>
-                        <a href="#" class="btn btn-outline-custom w-100 text-start">
+                        <a href="<?= base_url('admin/reporte-vehiculos-cliente') ?>"
+                            class="btn btn-outline-custom w-100 text-start">
                             <i class="bi bi-car-front me-2"></i>Vehículos por Cliente
                         </a>
                         <a href="<?= base_url('admin/reporte-activos') ?>"

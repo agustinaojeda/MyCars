@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\AlquilerModel;
+use App\Models\VehiculoModel; 
 
 class Admin extends BaseController
 {
@@ -84,5 +85,57 @@ class Admin extends BaseController
         $datos['alquileres'] = $alquilerModel->obtenerVehiculosAlquiladosActualmente();
         
         return view('Admin/reporte_activos', $datos);
+    }
+
+    // Carga el reporte de clientes filtrados por un vehículo específico
+    public function reporteClientesVehiculo()
+    {
+        $vehiculoModel = new VehiculoModel();
+        $alquilerModel = new AlquilerModel();
+
+        $datos['clientes'] = [];
+        $datos['vehiculoSeleccionado'] = null;
+        
+        // Atrapamos la categoría si el usuario hizo clic en un botón de filtro
+        $datos['categoriaSeleccionada'] = $this->request->getGet('categoria');
+        
+        // Atrapamos el ID del vehículo si el admin presionó el botón de "Buscar"
+        $idVehiculo = $this->request->getGet('idVehiculo');
+
+        // Si hay una categoría seleccionada, filtramos los vehículos por esa categoría
+        if ($datos['categoriaSeleccionada']) {
+            $datos['vehiculos'] = $vehiculoModel->where('categoriaVehiculo', $datos['categoriaSeleccionada'])->findAll();
+        } else {
+            // Si no hay categoría, traemos todos por defecto
+            $datos['vehiculos'] = $vehiculoModel->findAll();
+        }
+
+        // Si hay un ID, buscamos a los clientes usando la función del modelo
+        if ($idVehiculo) {
+            $datos['clientes'] = $alquilerModel->obtenerClientesPorVehiculo($idVehiculo);
+            $datos['vehiculoSeleccionado'] = $idVehiculo;
+        }
+
+        return view('Admin/reporte_clientes_vehiculo', $datos);
+    }
+
+    // Carga el reporte de vehículos alquilados por un cliente específico
+    public function reporteVehiculosCliente()
+    {
+        $usuarioModel = new \App\Models\UsuarioModel();
+        $alquilerModel = new AlquilerModel();
+
+        $datos['clientes'] = $usuarioModel->where('rolUsuario', 'cliente')->findAll();
+        $datos['vehiculos'] = [];
+        $datos['clienteSeleccionado'] = null;
+
+        $idCliente = $this->request->getGet('idCliente');
+
+        if ($idCliente) {
+            $datos['vehiculos'] = $alquilerModel->obtenerVehiculosPorCliente($idCliente);
+            $datos['clienteSeleccionado'] = $idCliente;
+        }
+
+        return view('Admin/reporte_vehiculos_cliente', $datos);
     }
 }

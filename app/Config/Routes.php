@@ -29,7 +29,11 @@ $routes->get('admin/devoluciones', 'Admin::devoluciones');
 $routes->get('admin/confirmar-devolucion/(:num)', 'Admin::confirmarDevolucion/$1');
 // Ruta para el reporte de alquileres activos
 $routes->get('admin/reporte-activos', 'Admin::reporteActivos');
+// Ruta para el reporte de clientes por vehículo
+$routes->get('admin/reporte-clientes-vehiculo', 'Admin::reporteClientesVehiculo');
+// Ruta para el reporte de vehículos por cliente
+$routes->get('admin/reporte-vehiculos-cliente', 'Admin::reporteVehiculosCliente');
 
-$routes->get('vehiculos','Usuario::index');
+$routes->get('vehiculos', 'Usuario::index');
 
 $routes->get('categoria/(:segment)', 'Vehiculo::categoria/$1');
