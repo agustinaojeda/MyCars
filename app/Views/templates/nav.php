@@ -1,14 +1,12 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark shadow-sm sticky-top">
     <div class="container-fluid">
 
-        <a class="navbar-brand fw-bold" href="<?= base_url('/') ?>">MyCars</a>
+        <a class="navbar-brand fw-bold" href="<?= base_url('/') ?>">MyCar</a>
 
         <div class="navbar-collapse justify-content-between">
 
             <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('vehiculos') ?>">Vehículos</a>
-                </li>
+
             </ul>
 
             <ul class="navbar-nav align-items-center">
@@ -20,6 +18,17 @@
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end border-secondary shadow" aria-labelledby="userMenuLink">
+                            <?php if (session()->get('rolUsuario') === 'admin') : ?>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center" href="<?= base_url('admin/dashboard') ?>">
+                                        <i class="bi bi-speedometer2 me-2"></i>Panel administrador
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider border-secondary border-opacity-50">
+                                </li>
+                            <?php endif; ?>
+
                             <li>
                                 <a class="dropdown-item text-danger d-flex align-items-center" href="<?= base_url('logout') ?>">
                                     <i class="bi bi-box-arrow-right me-2"></i> Cerrar sesión
