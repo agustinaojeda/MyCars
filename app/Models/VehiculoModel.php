@@ -60,4 +60,8 @@ class VehiculoModel extends Model
     public function mostrarVehiculosDisponibles(){
         return $this->where('activoVehiculo', 1)->where('disponibleVehiculo', 1)->findAll();
     }
+
+    public function mostrarVehiculosActivos(){
+        return $this->where('activoVehiculo', 1)->findAll();
+    }
 }

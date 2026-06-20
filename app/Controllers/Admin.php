@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\AlquilerModel;
 use App\Models\UsuarioModel;
+use App\Models\VehiculoModel;
 
 class Admin extends BaseController
 {
@@ -121,7 +122,7 @@ class Admin extends BaseController
         $data['usuario'] = $usuarioModel->find($id);
 
         if (!$data['usuario']) {
-            return redirect()->to(base_url('admin/usuarios'))->with('mensaje', 'El usuario no existe.');
+            return redirect()->to(base_url('admin/gestionar-usuarios'))->with('mensaje', 'El usuario no existe.');
         }
 
         return view('admin/editar_usuario', $data);
@@ -179,5 +180,103 @@ class Admin extends BaseController
         $usuarioModel->update($id, $datosActualizar);
 
         return redirect()->to(base_url('admin/gestionar-usuarios'))->with('mensaje', '¡Datos del usuario modificados con éxito!');
+    }
+
+    public function gestionarVehiculos()
+    {
+        $vehiculoModel = new VehiculoModel();
+        $data['vehiculos'] =  $vehiculoModel->mostrarVehiculosActivos();
+
+        return view('Admin/gestionar_vehiculos', $data);
+    }
+
+    public function actualizarVehiculo($id)
+    {
+        $vehiculoModel = new VehiculoModel();
+        $vehiculo = $vehiculoModel->find($id);
+
+        if (!$vehiculo) {
+            return redirect()->back()->with('mensaje', 'El vehículo no existe.');
+        }
+
+        $reglas = [
+            'marcaVehiculo'      => 'required|min_length[2]',
+            'modeloVehiculo'     => 'required',
+            'anioVehiculo'       => 'required|exact_length[4]|greater_than[1900]',
+            'precioAlqVehiculo'  => 'required|numeric|greater_than[0]',
+            'kilometrajeVehiculo' => 'required|numeric|greater_than[0]',
+            'motorVehiculo'     => 'required'
+        ];
+
+        $mensajes = [
+            'marcaVehiculo'  => ['required' => 'La marca es obligatoria.', 'min_length' => 'Marca inválida.'],
+            'modeloVehiculo' => ['required' => 'El modelo es obligatorio.'],
+            'anioVehiculo'   => ['required' => 'El año es obligatorio.', 'exact_length' => 'Debe tener 4 dígitos.','greater_than' => 'El año del vehículo debe ser mayor a 1900.'],
+            'precioAlqVehiculo' => ['required' => 'El precio es obligatorio.', 'numeric' => 'Debe ser un número válido.','greater_than' => 'El precio de alquiler debe ser mayor a $0.'],
+            'kilometrajeVehiculo' => ['required' => 'El kilometraje es obligatorio.', 'numeric' => 'Debe ser un número válido.','greater_than' => 'El kilometraje debe ser mayor a 0.'],
+            'motorVehiculo' => ['required' => 'El tipo de motor es obligatorio.']
+        ];
+
+        $file = $this->request->getFile('imagenVehiculo');
+        if ($file && $file->isValid()) {
+            $reglas['imagenVehiculo'] = 'uploaded[imagenVehiculo]|max_size[imagenVehiculo,2048]|is_image[imagenVehiculo]';
+            $mensajes['imagenVehiculo'] = [
+                'max_size' => 'La imagen es muy pesada (Máximo 2MB).',
+                'is_image' => 'El archivo seleccionado debe ser una imagen válida.'
+            ];
+        }
+
+        if (!$this->validate($reglas, $mensajes)) {
+            return redirect()->back()->withInput();
+        }
+
+        $datosActualizar = [
+            'marcaVehiculo'       => $this->request->getPost('marcaVehiculo'),
+            'modeloVehiculo'      => $this->request->getPost('modeloVehiculo'),
+            'categoriaVehiculo'   => $this->request->getPost('categoriaVehiculo'),
+            'anioVehiculo'        => $this->request->getPost('anioVehiculo'),
+            'motorVehiculo'       => $this->request->getPost('motorVehiculo'),
+            'kilometrajeVehiculo' => $this->request->getPost('kilometrajeVehiculo'),
+            'precioAlqVehiculo'   => $this->request->getPost('precioAlqVehiculo'),
+        ];
+
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            $nuevoNombre = $file->getRandomName();
+            $file->move(FCPATH . 'assets/images', $nuevoNombre);
+
+            $datosActualizar['imagenVehiculo'] = $nuevoNombre;
+        }
+
+        $vehiculoModel->update($id, $datosActualizar);
+
+        return redirect()->to(base_url('admin/gestionar-vehiculos'))->with('mensaje', '¡Vehículo modificado correctamente!');
+    }
+
+    public function bajaLogicaVehiculo($id)
+    {
+        $vehiculoModel = new VehiculoModel();
+
+        $datosBaja = ['activoVehiculo' => 0];
+
+        $vehiculoModel->update($id, $datosBaja);
+
+        return redirect()->to(base_url('admin/gestionar-vehiculos'))->with('mensaje', 'El vehículo fue dado de baja exitosamente.');
+    }
+
+    public function editarVehiculo($id)
+    {
+        $vehiculoModel = new VehiculoModel();
+
+        $data['vehiculo'] = $vehiculoModel->find($id);
+
+        if (!$data['vehiculo']) {
+            return redirect()->to(base_url('admin/gestionar-vehiculos'))->with('mensaje', 'El vehículo no existe.');
+        }
+
+        return view('admin/editar_vehiculo', $data);
+    }
+
+    public function crearVehiculo(){
+        return view('admin/crear-vehiculo');
     }
 }

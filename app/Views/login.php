@@ -106,7 +106,7 @@
         <div class="row justify-content-center px-3">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 glass-card">
                 <div class="mb-4">
-                    <a href="<?= base_url('/') ?>" class="text-decoration-none"><h1 class="fw-bold text-white h3 mb-1 text-center">MyCars</h1></a>
+                    <a href="<?= base_url('/') ?>" class="text-decoration-none"><h1 class="fw-bold text-white h3 mb-1 text-center">MyCar</h1></a>
                     
                 </div>
                 <div class="mb-4">

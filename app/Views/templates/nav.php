@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark shadow-sm sticky-top">
     <div class="container-fluid">
 
-        <a class="navbar-brand fw-bold" href="<?= base_url('/') ?>">MyCars</a>
+        <a class="navbar-brand fw-bold" href="<?= base_url('/') ?>">MyCar</a>
 
         <div class="navbar-collapse justify-content-between">
 

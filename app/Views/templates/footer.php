@@ -3,7 +3,7 @@
         <div class="row text-start text-md-left">
 
             <div class="col-md-6 col-lg-6 col-xl-6 mx-auto mt-3">
-                <a class="navbar-brand fw-bold fs-4 text-white d-block mb-3" href="<?= base_url('/') ?>">MyCars</a>
+                <a class="navbar-brand fw-bold fs-4 text-white d-block mb-3" href="<?= base_url('/') ?>">MyCar</a>
                 <p class="text-white-50 small" style="max-width: 300px; line-height: 1.6;">
                     Experimentá el máximo rendimiento y el confort de nuestra flota premium diseñada para viajes únicos y exigentes.
                 </p>

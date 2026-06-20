@@ -125,7 +125,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-purple py-2.5 rounded-3 fw-medium mt-2">
-                    Guardar Cambios</i>
+                    Guardar cambios</i>
                 </button>
             </form>
 
