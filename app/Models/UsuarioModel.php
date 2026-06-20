@@ -47,5 +47,7 @@ class UsuarioModel extends Model
 
         return null; 
     }
-
+    public function mostrarUsuariosActivos(){
+        return $this->where('activoUsuario', 1)->findAll();
+    }
 }

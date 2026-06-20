@@ -30,6 +30,11 @@ $routes->get('admin/confirmar-devolucion/(:num)', 'Admin::confirmarDevolucion/$1
 // Ruta para el reporte de alquileres activos
 $routes->get('admin/reporte-activos', 'Admin::reporteActivos');
 
+$routes->get('admin/gestionar-usuarios', 'Admin::gestionarUsuarios');
+$routes->get('admin/usuarios/baja/(:num)', 'Admin::bajaLogica/$1');
+$routes->get('admin/usuarios/editar/(:num)', 'Admin::editar/$1');
+$routes->post('admin/usuarios/actualizar/(:num)', 'Admin::actualizar/$1');
+
 $routes->get('vehiculos','Usuario::index');
 
 $routes->get('categoria/(:segment)', 'Vehiculo::categoria/$1');

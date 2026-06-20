@@ -95,7 +95,7 @@
                         del sistema.
                     </p>
                     <div class="d-flex flex-column gap-2 mt-auto">
-                        <a href="#" class="btn w-100 text-start"
+                        <a href="<?= base_url('admin/gestionar-usuarios') ?>" class="btn w-100 text-start"
                             style="background: rgba(255,255,255,0.05); color: #e2e8f0; border: 1px solid rgba(255,255,255,0.1);">
                             <i class="bi bi-person-gear me-2"></i>Gestionar Usuarios
                         </a>
