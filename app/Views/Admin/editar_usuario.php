@@ -89,11 +89,14 @@
                 </div>
 
                 <div class="d-flex flex-column gap-1">
-                    <label for="telefonoUsuario" class="small fw-medium text-secondary" style="font-size: 0.75rem;">Teléfono</label>
+                    <label for="telefonoUsuario" class="small fw-medium  <?= (validation_errors() && isset(validation_errors()['telefonoUsuario'])) ? 'text-danger' : 'text-secondary' ?>" style="font-size: 0.75rem;">Teléfono</label>
                     <input type="tel" id="telefonoUsuario" name="telefonoUsuario"
                         oninput="this.value = this.value.replace(/[^0-9]/g, '');"
                         value="<?= old('telefonoUsuario', $usuario['telefonoUsuario']) ?>"
-                        class="form-control form-control-custom py-2.5 rounded-3" placeholder="No registrado">
+                        class="form-control form-control-custom py-2.5 rounded-3 <?= (validation_errors() && isset(validation_errors()['telefonoUsuario'])) ? 'is-invalid' : '' ?>" placeholder="No registrado">
+                    <?php if (validation_show_error('telefonoUsuario')) : ?>
+                        <span class="text-danger small mt-1" style="font-size: 0.75rem;"><i class="bi bi-exclamation-circle me-1"></i><?= validation_show_error('telefonoUsuario') ?></span>
+                    <?php endif; ?>
                 </div>
 
                 <div class="d-flex flex-column gap-1">

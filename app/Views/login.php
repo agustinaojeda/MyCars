@@ -135,11 +135,6 @@
                             class="form-control form-control-custom">
                     </div>
 
-                    <div class="d-flex justify-content-between align-items-center small mt-1" style="font-size: 0.75rem;">
-
-                        <a href="#" class="text-decoration-none" style="color: #a78bfa;">¿Olvidaste tu contraseña?</a>
-                    </div>
-
                     <button type="submit" class="btn btn-purple w-100 mt-2">
                         Iniciar sesión
                     </button>

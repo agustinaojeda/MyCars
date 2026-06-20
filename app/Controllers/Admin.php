@@ -157,7 +157,8 @@ class Admin extends BaseController
         $reglas = [
             'nombreUsuario' => 'required|min_length[6]',
             'emailUsuario'  => "required|valid_email|is_unique[usuario.emailUsuario,idUsuario,{$id}]",
-            'rolUsuario'    => 'required|in_list[cliente,admin]'
+            'rolUsuario'    => 'required|in_list[cliente,admin]',
+            'telefonoUsuario' => 'required|min_length[6]|numeric|greater_than[0]'
         ];
 
         $nuevaPassword = $this->request->getPost('passwordUsuario');
@@ -181,7 +182,8 @@ class Admin extends BaseController
             ],
             'passwordUsuario' => [
                 'min_length' => 'La nueva contraseña debe tener al menos 6 caracteres.'
-            ]
+            ],
+            'telefonoUsuario' => ['required' => 'El telefono es obligatorio.', 'numeric' => 'Debe ser un número válido.','min_length' => 'El teléfono debe tener al menos 6 números.','greater_than' => 'Debe ser un número válido.']
         ];
 
         if (!$this->validate($reglas, $mensajes)) {
