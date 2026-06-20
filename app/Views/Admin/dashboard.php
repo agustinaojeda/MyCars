@@ -24,7 +24,7 @@
             </div>
             <div class="col-md-4 text-md-end mt-3 mt-md-0">
                 <span
-                    class="badge rounded-pill bg-info bg-opacity-20 text-info border border-info border-opacity-50 px-3 py-2">
+                    class="badge rounded-pill bg-info bg-opacity-20 text-white border border-info border-opacity-50 px-3 py-2">
                     <i class="bi bi-person-badge me-2"></i>Modo Administrador
                 </span>
             </div>
@@ -48,7 +48,7 @@
                         <a href="<?= base_url('admin/reservas-pendientes') ?>" class="btn btn-purple w-100 text-start">
                             <i class="bi bi-check-circle me-2"></i>Validar Reservas Pendientes
                         </a>
-                        <a href="#" class="btn btn-outline-custom w-100 text-start">
+                        <a href="<?= base_url('admin/devoluciones') ?>" class="btn btn-outline-custom w-100 text-start">
                             <i class="bi bi-arrow-return-left me-2"></i>Registrar Devolución
                         </a>
                     </div>
@@ -68,13 +68,16 @@
                         del negocio.
                     </p>
                     <div class="d-flex flex-column gap-2 mt-auto">
-                        <a href="#" class="btn btn-outline-custom w-100 text-start">
+                        <a href="<?= base_url('admin/reporte-clientes-vehiculo') ?>"
+                            class="btn btn-outline-custom w-100 text-start">
                             <i class="bi bi-people me-2"></i>Clientes por Vehículo
                         </a>
-                        <a href="#" class="btn btn-outline-custom w-100 text-start">
+                        <a href="<?= base_url('admin/reporte-vehiculos-cliente') ?>"
+                            class="btn btn-outline-custom w-100 text-start">
                             <i class="bi bi-car-front me-2"></i>Vehículos por Cliente
                         </a>
-                        <a href="#" class="btn btn-outline-custom w-100 text-start">
+                        <a href="<?= base_url('admin/reporte-activos') ?>"
+                            class="btn btn-outline-custom w-100 text-start">
                             <i class="bi bi-key me-2"></i>Alquileres Actuales Activos
                         </a>
                     </div>
@@ -94,11 +97,11 @@
                         del sistema.
                     </p>
                     <div class="d-flex flex-column gap-2 mt-auto">
-                        <a href="#" class="btn w-100 text-start"
+                        <a href="<?= base_url('admin/gestionar-usuarios') ?>" class="btn w-100 text-start"
                             style="background: rgba(255,255,255,0.05); color: #e2e8f0; border: 1px solid rgba(255,255,255,0.1);">
                             <i class="bi bi-person-gear me-2"></i>Gestionar Usuarios
                         </a>
-                        <a href="#" class="btn w-100 text-start"
+                        <a href="<?= base_url('admin/gestionar-vehiculos') ?>" class="btn w-100 text-start"
                             style="background: rgba(255,255,255,0.05); color: #e2e8f0; border: 1px solid rgba(255,255,255,0.1);">
                             <i class="bi bi-car-front-fill me-2"></i>Gestionar Vehículos
                         </a>

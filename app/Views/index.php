@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Cars</title>
+    <title>My Car</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
@@ -63,11 +63,11 @@
                         <div class="carousel-caption d-flex flex-column justify-content-end align-items-start text-start start-0 bottom-0 w-100 p-4 p-md-5">
 
                             <div class="mb-3">
-                                <span class="badge rounded-pill bg-secondary bg-opacity-20 text-white border border-secondary border-opacity-50 px-3 py-2 small me-2" style="backdrop-filter: blur(5px);">
+                                <span class="badge text-uppercase rounded-pill bg-secondary bg-opacity-20 text-white border border-secondary border-opacity-50 px-3 py-2 small me-2" style="backdrop-filter: blur(5px);">
                                     <?= $v['categoriaVehiculo'] ?>
                                 </span>
                                 <?php if ($v['disponibleVehiculo'] == 1) : ?>
-                                    <span class="badge rounded-pill bg-info bg-opacity-20 text-white border border-info border-opacity-50 px-3 py-2 small" style="backdrop-filter: blur(5px);">
+                                    <span class="badge rounded-pill bg-opacity-20 text-white text-uppercase border-opacity-50 px-3 py-2 small" style="backdrop-filter: blur(5px); background-color: #0c77a8;border-style: solid; border-width: 2px; border-color: #0c77a8;">
                                         <?= $v['marcaVehiculo'] ?>
                                     </span>
                                 <?php endif; ?>
@@ -215,7 +215,7 @@
                                 </div>
 
                                 <div class="px-4 pb-4">
-                                    <a href="<?= base_url('/vehiculos/detalle/' . $v['idVehiculo']) ?>" class="btn w-100 py-2 rounded-3 fw-medium transition-all <?= 'btn-outline-custom text-info' ?>" style="font-size: 0.85rem;">
+                                    <a href="<?= base_url('categoria/' . $v['categoriaVehiculo']) ?>" class="btn w-100 py-2 rounded-3 fw-medium transition-all <?= 'btn-outline-custom text-info' ?>" style="font-size: 0.85rem;">
                                         Ver categoría <?= $v['categoriaVehiculo'] ?>
                                     </a>
                                 </div>
@@ -238,7 +238,7 @@
                             Desde la potencia de un deportivo hasta la comodidad de una SUV para toda la familia. Recorré nuestro catálogo completo y encontrá el andar que se adapta a tu próximo destino.
                         </p>
 
-                        <a href="<?= base_url('/vehiculos') ?>" class="btn btnVer px-4 py-2.5 rounded-3 fw-medium d-flex align-items-center gap-2 transition-all">
+                        <a href="<?= (base_url('categoria/suv')) ?>" class="btn btnVer px-4 py-2.5 rounded-3 fw-medium d-flex align-items-center gap-2 transition-all">
                             Ver toda la flota<i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -248,7 +248,7 @@
         </div>
 
     <?php else: ?>
-        <p class="text-center p-4">Aún no hay vehículos disponibles</p> 
+        <p class="text-center p-4">Aún no hay vehículos disponibles</p>
     <?php endif; ?>
     <?= view('templates/footer') ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>

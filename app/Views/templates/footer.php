@@ -1,24 +1,23 @@
 <footer class="text-white pt-5 pb-4 mt-5" style="background-color: #0b0f19; border-top: 1px solid #1a2333;">
     <div class="container">
         <div class="row text-start text-md-left">
-            
+
             <div class="col-md-6 col-lg-6 col-xl-6 mx-auto mt-3">
-                <a class="navbar-brand fw-bold fs-4 text-white d-block mb-3" href="<?= base_url('/') ?>">MyCars</a>
+                <a class="navbar-brand fw-bold fs-4 text-white d-block mb-3" href="<?= base_url('/') ?>">MyCar</a>
                 <p class="text-white-50 small" style="max-width: 300px; line-height: 1.6;">
                     Experimentá el máximo rendimiento y el confort de nuestra flota premium diseñada para viajes únicos y exigentes.
                 </p>
             </div>
-
             <div class="col-md-6 col-lg-6 col-xl-6 mx-auto mt-3">
                 <h6 class="text-uppercase mb-4 fw-bold text-info" style="font-size: 0.85rem; letter-spacing: 1px;">Navegación</h6>
                 <p class="mb-2">
                     <a href="<?= base_url('/') ?>" class="text-white-50 text-decoration-none small transition-all footer-link">Inicio</a>
                 </p>
                 <p class="mb-2">
-                    <a href="<?= base_url('vehiculos') ?>" class="text-white-50 text-decoration-none small transition-all footer-link">Vehículos</a>
+                    <a href="<?=base_url('categoria/suv')?>" class="text-white-50 text-decoration-none small transition-all footer-link">Categorías</a>
                 </p>
             </div>
-
+            
 
         </div>
 
@@ -36,9 +35,10 @@
 
 <style>
     .footer-link:hover {
-        color: #38bdf8 !important; 
+        color: #38bdf8 !important;
         padding-left: 3px;
     }
+
     .footer-link {
         transition: all 0.2s ease-in-out;
     }

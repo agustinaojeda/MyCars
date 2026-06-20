@@ -84,7 +84,7 @@ class AlquilerModel extends Model
         return $this->select('alquileres.idAlquiler, vehiculo.marcaVehiculo, vehiculo.modeloVehiculo, vehiculo.precioAlqVehiculo, usuario.nombreUsuario, usuario.telefonoUsuario, alquileres.fechaDesdeAlquiler, alquileres.fechaHastaAlquiler')
                     ->join('vehiculo', 'alquileres.idVehiculoAlquiler = vehiculo.idVehiculo')
                     ->join('usuario', 'alquileres.idClienteAlquiler = usuario.idUsuario')
-                    ->where('alquileres.estadoAlquiler', 'Activo')
+                    ->where('alquileres.estadoAlquiler', 'activo')
                     ->findAll();
     }
 
@@ -103,5 +103,31 @@ class AlquilerModel extends Model
     {
         // Cambiamos el estado de pendiente a activo
         return $this->update($idAlquiler, ['estadoAlquiler' => 'activo']);
+    }
+
+    // Función para ver el detalle completo de un solo alquiler
+    public function obtenerDetalleReserva($idAlquiler)
+    {
+        return $this->select('alquileres.*, usuario.nombreUsuario, usuario.emailUsuario, usuario.telefonoUsuario, usuario.direccionUsuario, vehiculo.marcaVehiculo, vehiculo.modeloVehiculo, vehiculo.anioVehiculo, vehiculo.imagenVehiculo, vehiculo.precioAlqVehiculo, vehiculo.motorVehiculo, vehiculo.nroPlazasVehiculo')
+                    ->join('usuario', 'alquileres.idClienteAlquiler = usuario.idUsuario')
+                    ->join('vehiculo', 'alquileres.idVehiculoAlquiler = vehiculo.idVehiculo')
+                    ->where('alquileres.idAlquiler', $idAlquiler)
+                    ->first(); // Usamos first() porque buscamos un registro único, no una lista
+    }
+
+    // Función para rechazar la reserva
+    public function rechazarReserva($idAlquiler)
+    {
+        return $this->update($idAlquiler, ['estadoAlquiler' => 'cancelado']);
+    }
+
+    // Función para obtener los alquileres que están actualmente en curso
+    public function obtenerAlquileresActivos()
+    {
+        return $this->select('alquileres.*, usuario.nombreUsuario, usuario.emailUsuario, vehiculo.marcaVehiculo, vehiculo.modeloVehiculo, vehiculo.imagenVehiculo')
+                    ->join('usuario', 'alquileres.idClienteAlquiler = usuario.idUsuario')
+                    ->join('vehiculo', 'alquileres.idVehiculoAlquiler = vehiculo.idVehiculo')
+                    ->where('alquileres.estadoAlquiler', 'activo')
+                    ->findAll();
     }
 }
