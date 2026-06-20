@@ -296,6 +296,6 @@ class Admin extends BaseController
 
     public function crearVehiculo()
     {
-        return view('Admin/crear_vehiculo');
+        return view('Admin/crear-vehiculo');
     }
 }
