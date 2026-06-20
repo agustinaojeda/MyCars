@@ -1,27 +1,26 @@
-.card-vehiculo {
-    background: #f8f9fa;
-    border: none;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.20);
-    transition: all 0.3s ease;
+.card-vehiculo{
+    background:#0b1324;
+    border:1px solid rgba(13,202,240,.15);
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,.35);
+    transition:.3s;
+    height:100%;
 }
 
-
-/* efecto al pasar el mouse */
-.card-vehiculo:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.35) !important;
+.card-vehiculo:hover{
+    transform:translateY(-5px);
+    box-shadow:0 20px 40px rgba(13,202,240,.15);
 }
 
 
 /* imagen */
-.imagen-vehiculo {
-    height: 230px;
-    object-fit: contain;
-    transition: transform 0.4s ease;
+.imagen-vehiculo{
+    width:100%;
+    height:280px;
+    object-fit:contain;
+    background:#081224;
 }
-
 
 .card-vehiculo:hover .imagen-vehiculo {
     transform: scale(1.05);
@@ -29,21 +28,34 @@
 
 
 /* cuerpo */
-.card-vehiculo .card-body {
-    padding: 20px;
+.card-vehiculo .card-body{
+    background:#081224;
+    color:white;
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+    flex:1;
 }
 
+.estado-badge{
+    margin-top:auto;
+    width:fit-content;
+}
 
 /* titulo */
-.card-vehiculo h5 {
-    font-weight: 700;
+.card-vehiculo h5:first-child{
+    font-size:2rem;
+    font-weight:700;
+    color:white;
+    margin-bottom:20px;
 }
 
 
 /* precio */
-.card-vehiculo h5:last-of-type {
-    font-size: 22px;
-    margin-top: 15px;
+.card-vehiculo h5:last-of-type{
+    color:#0dcaf0;
+    font-size:1.7rem;
+    font-weight:700;
 }
 
 
@@ -55,45 +67,127 @@
 
 
 /* footer */
-.card-vehiculo .card-footer {
-    background: white;
-    border-top: 1px solid #ddd;
-    padding: 10px 20px;
+.card-vehiculo .card-footer{
+    background:#111827;
+    border-top:1px solid rgba(255,255,255,.08);
+    padding:20px;
 }
 
 
 /* botón */
-.card-vehiculo .btn-primary {
-    background: #0d6efd;
-    border: none;
-    padding: 12px;
-    border-radius: 10px;
-    transition: 0.3s;
+.card-vehiculo .btn-primary{
+    background:linear-gradient(90deg,#2563eb,#06b6d4);
+    border:none;
+    border-radius:12px;
+    font-weight:600;
+    padding:12px;
+    transition:.25s;
 }
 
-
-.card-vehiculo .btn-primary:hover {
-    transform: translateY(-2px);
-    background: #084298;
+.card-vehiculo .btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(13,202,240,.35);
 }
 .card-vehiculo .card-body {
     flex: 1;
 }
 
 /*filtro*/
-.filtro-card {
-    border-radius: 16px;
+.filtro-card{
+    background:#1f2937;
     border:none;
+    border-radius:24px;
+    color:white;
+    box-shadow:0 12px 30px rgba(0,0,0,.35);
 }
 
-
-.filtro-card .form-select,
-.filtro-card .form-control {
-    border-radius: 10px;
+.filtro-card .form-control,
+.filtro-card .form-select{
+    background:white;
+    color:#212529;
+    border:1px solid rgba(13,202,240,.4);
+    border-radius:12px;
 }
 
+.filtro-card .form-control:focus,
+.filtro-card .form-select:focus{
+    border-color:#0dcaf0;
+    box-shadow:0 0 0 .2rem rgba(13,202,240,.25);
+}
 
-.filtro-card .btn {
-    border-radius: 10px;
-    padding: 12px;
+.filtro-card .btn{
+    background:linear-gradient(90deg,#2563eb,#06b6d4);
+    border:none;
+    color:white;
+    border-radius:12px;
+    font-weight:600;
+}
+/* Todas las tarjetas de la misma altura */
+.card-vehiculo{
+    display:flex;
+    flex-direction:column;
+    height:100%;
+}
+
+.card-vehiculo .card-body{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+}
+
+.card-vehiculo .card-footer{
+    margin-top:auto;
+}
+.card-vehiculo{
+    position:relative;
+}
+
+.card-vehiculo::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:220px;
+    background:linear-gradient(to top,
+        rgba(17,24,39,.05),
+        rgba(17,24,39,.35));
+    pointer-events:none;
+}
+.titulo-vehiculo{
+    color:#fff;
+    font-size:1.8rem;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.info-linea{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    color:#e5e7eb;
+}
+
+.info-linea span:first-child{
+    font-weight:600;
+}
+
+.precio{
+    margin-top:20px;
+    font-size:2rem;
+    font-weight:700;
+    color:#fff;
+}
+
+.precio small{
+    font-size:1rem;
+    color:#cbd5e1;
+}
+.card-vehiculo,
+.card-vehiculo .card-body,
+.card-vehiculo .card-footer{
+    background:#081224 !important;
+    color:white !important;
 }

@@ -1,0 +1,75 @@
+.reserva-card{
+    background: #1f2937;
+    color: #fff;
+    border-radius: 28px;
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow: 0 15px 40px rgba(0,0,0,.35);
+    overflow: hidden;
+}
+.reserva-header{
+    background: #1f2937;
+    color: white;
+    padding: 20px 28px;
+    border-bottom: 2px solid #0dcaf0;
+}
+.reserva-img{
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+.resumen-card{
+    background:#111827;
+    border:1px solid rgba(37,99,235,.35);
+    color:white;
+}
+.resumen-header{
+    background:#1f2937;
+    color:#60a5fa;
+}
+.total-reserva{
+    color:#0dcaf0;
+    font-size:30px;
+    font-weight:700;
+}
+.btn-confirmar{
+    background:linear-gradient(90deg,#2563eb,#06b6d4);
+    border:none;
+    color:#fff;
+    border-radius:12px;
+    padding:12px 28px;
+    font-weight:600;
+    transition:all .25s ease;
+}
+
+.btn-confirmar:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 25px rgba(13,202,240,.35);
+}
+.form-control,
+.form-select{
+    background:#fff;
+    color:#212529;
+    border:1px solid rgba(13,202,240,.45);
+    border-radius:12px;
+}
+
+.form-control::placeholder{
+    color:#6c757d;
+}
+
+.form-control:focus,
+.form-select:focus{
+    background:#fff;
+    color:#212529;
+    border-color:#0dcaf0;
+    box-shadow:0 0 0 .2rem rgba(13,202,240,.25);
+}
+.card-body{
+    color:#e5e7eb;
+}
+
+.card-body h4{
+    color:white;
+}
+.text-success{
+    color:#22c55e !important;
+}

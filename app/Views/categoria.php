@@ -45,6 +45,8 @@
 /** @var string $anterior */
 /** @var string $siguiente */
 /** @var array $vehiculos */
+/** @var array $marca */
+/** @var array $capacidad */
 ?>
 <div class="container mt-4">
 
@@ -89,24 +91,27 @@
                                         </label>
 
                                         <select class="form-select" name="marca">
-                                            <option value="">Todas</option>
-                                            <option value="Toyota">Toyota</option>
-                                            <option value="Ford">Ford</option>
-                                            <option value="Volkswagen">Volkswagen</option>
-                                            <option value="Jeep">Jeep</option>
-                                            <option value="Renault">Renault</option>
-                                            <option value="Peugeot">Peugeot</option>
-                                            <option value="Fiat">Fiat</option>
-                                            <option value="Hyundai">Hyundai</option>
-                                            <option value="Audi">Audi</option>
-                                            <option value="BMW">BMW</option>
-                                            <option value="Honda">Honda</option>
-                                            <option value="Jaguar">Jaguar</option>
-                                            <option value="Kia">Kia</option>
-                                            <option value="Mazda">Mazda</option>
-                                            <option value="Mercedes">Mercedes</option>
-                                            <option value="Nissan">Nissan</option>
-                                            <option value="Porsche">Porsche</option>
+                                            <option value="" <?= empty($marca) ? 'selected' : '' ?>>
+                                                Todas
+                                            </option>
+
+                                            <option value="Toyota" <?= ($marca == 'Toyota') ? 'selected' : '' ?>>Toyota</option>
+                                            <option value="Ford" <?= ($marca == 'Ford') ? 'selected' : '' ?>>Ford</option>
+                                            <option value="Volkswagen" <?= ($marca == 'Volkswagen') ? 'selected' : '' ?>>Volkswagen</option>
+                                            <option value="Jeep" <?= ($marca == 'Jeep') ? 'selected' : '' ?>>Jeep</option>
+                                            <option value="Renault" <?= ($marca == 'Renault') ? 'selected' : '' ?>>Renault</option>
+                                            <option value="Peugeot" <?= ($marca == 'Peugeot') ? 'selected' : '' ?>>Peugeot</option>
+                                            <option value="Fiat" <?= ($marca == 'Fiat') ? 'selected' : '' ?>>Fiat</option>
+                                            <option value="Hyundai" <?= ($marca == 'Hyundai') ? 'selected' : '' ?>>Hyundai</option>
+                                            <option value="Audi" <?= ($marca == 'Audi') ? 'selected' : '' ?>>Audi</option>
+                                            <option value="BMW" <?= ($marca == 'BMW') ? 'selected' : '' ?>>BMW</option>
+                                            <option value="Honda" <?= ($marca == 'Honda') ? 'selected' : '' ?>>Honda</option>
+                                            <option value="Jaguar" <?= ($marca == 'Jaguar') ? 'selected' : '' ?>>Jaguar</option>
+                                            <option value="Kia" <?= ($marca == 'Kia') ? 'selected' : '' ?>>Kia</option>
+                                            <option value="Mazda" <?= ($marca == 'Mazda') ? 'selected' : '' ?>>Mazda</option>
+                                            <option value="Mercedes" <?= ($marca == 'Mercedes') ? 'selected' : '' ?>>Mercedes</option>
+                                            <option value="Nissan" <?= ($marca == 'Nissan') ? 'selected' : '' ?>>Nissan</option>
+                                            <option value="Porsche" <?= ($marca == 'Porsche') ? 'selected' : '' ?>>Porsche</option>
                                         </select>
                                     </div>
                                     <!-- Precio -->
@@ -135,13 +140,30 @@
                                             Capacidad
                                         </label>
                                         <select class="form-select" name="capacidad">
-                                            <option value="">Todas</option>
-                                            <option value="2">2 plazas</option>
-                                            <option value="3">3 plazas</option>
-                                            <option value="4">4 plazas</option>
-                                            <option value="5">5 plazas</option>
-                                            <option value="7">7 plazas</option>
-                                        </select>
+                                        <option value="" <?= empty($capacidad) ? 'selected' : '' ?>>
+                                            Todas
+                                        </option>
+
+                                        <option value="2" <?= ($capacidad == 2) ? 'selected' : '' ?>>
+                                            2 plazas
+                                        </option>
+
+                                        <option value="3" <?= ($capacidad == 3) ? 'selected' : '' ?>>
+                                            3 plazas
+                                        </option>
+
+                                        <option value="4" <?= ($capacidad == 4) ? 'selected' : '' ?>>
+                                            4 plazas
+                                        </option>
+
+                                        <option value="5" <?= ($capacidad == 5) ? 'selected' : '' ?>>
+                                            5 plazas
+                                        </option>
+
+                                        <option value="7" <?= ($capacidad == 7) ? 'selected' : '' ?>>
+                                            7 plazas
+                                        </option>
+                                    </select>
                                         
 
                                     </div>
@@ -149,6 +171,9 @@
                                         <i class="bi bi-search"></i>
                                         Buscar
                                     </button>
+                                    <a href="<?= base_url('categoria/' . $categoria) ?>" class="btn btn-secondary w-100 mt-2">
+                                        Limpiar filtros
+                                    </a>
                         </form>
                     </div>
                 </div>
@@ -159,38 +184,55 @@
                 <?php if (!empty($vehiculos)): ?>
                     <?php foreach ($vehiculos as $vehiculo): ?>
 
-                        <div class="col-md-4 mb-4 px-2">
+                        <div class="col-lg-6 col-xl-4 mb-4">
                             <div class="card h-100 shadow-sm card-vehiculo d-flex">
 
                                <img src="<?= base_url('assets/images/' . $vehiculo['imagenVehiculo']) ?>"
                                     class="card-img-top imagen-vehiculo"
                                     alt="<?= $vehiculo['marcaVehiculo'] ?>">
                                 <div class="card-body">
-                                    <h5>
+
+                                    <h5 class="titulo-vehiculo">
                                         <?= $vehiculo['marcaVehiculo'] ?>
                                         <?= $vehiculo['modeloVehiculo'] ?>
                                     </h5>
-                                        <p>Año: <?= $vehiculo['anioVehiculo'] ?></p>
-                                        <p><?= $vehiculo['nroPlazasVehiculo'] ?> plazas</p>
-                                        <p>Motor <?= $vehiculo['motorVehiculo'] ?></p>
-                                    <h5>
-                                        $<?= number_format($vehiculo['precioAlqVehiculo'], 0, ',', '.') ?>
-                                        / día
-                                    </h5>
+
+                                    <div class="info-linea">
+                                        <span>Año</span>
+                                        <span><?= $vehiculo['anioVehiculo'] ?></span>
+                                    </div>
+
+                                    <div class="info-linea">
+                                        <span>Plazas</span>
+                                        <span><?= $vehiculo['nroPlazasVehiculo'] ?></span>
+                                    </div>
+
+                                    <div class="info-linea">
+                                        <span>Motor</span>
+                                        <span><?= $vehiculo['motorVehiculo'] ?></span>
+                                    </div>
+
+                                    <div class="precio">
+                                        $<?= number_format($vehiculo['precioAlqVehiculo'],0,',','.') ?>
+                                        <small>/ día</small>
+                                    </div>
+
                                     <?php if ($vehiculo['disponibleVehiculo'] == 1): ?>
-                                        <span class="badge bg-success">
+                                        <span class="badge bg-success estado-badge">
                                             Disponible
                                         </span>
                                     <?php else: ?>
-                                        <span class="badge bg-danger">
+                                        <span class="badge bg-danger estado-badge">
                                             No disponible
                                         </span>
                                     <?php endif; ?>
+
                                 </div>
                                 <div class="card-footer">
-                                    <button class="btn btn-primary w-100">
+                                <a href="<?= base_url('categoria/detalle/'.$vehiculo['idVehiculo']) ?>"
+                                    class="btn btn-primary">
                                         Ver detalles
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -207,5 +249,13 @@
 </div>
 <?= view('templates/footer') ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <script>
+document.getElementById('marca').addEventListener('change', function () {
+    if (this.value === '') {
+        document.getElementById('capacidad').value = '';
+    }
+});
+</script>
 </body>
 </html>

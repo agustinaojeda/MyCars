@@ -53,9 +53,48 @@ class Vehiculo extends BaseController
                 : $categorias[$indice - 1],
             'siguiente' => ($indice == count($categorias) - 1)
                 ? $categorias[0]
-                : $categorias[$indice + 1]
+                : $categorias[$indice + 1],
+
+            'marca' => $marca,
+            'precio' => $precio,
+            'capacidad' => $capacidad,    
         ];
         return view('categoria', $data);
+    }
+
+    public function detalle(int $id)
+    {
+        $vehiculoModel = new VehiculoModel();
+
+        $vehiculo = $vehiculoModel->find($id);
+
+        if (!$vehiculo) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException(
+                "Vehículo no encontrado"
+            );
+        }
+
+          $categoria = $vehiculo['categoriaVehiculo'];
+
+        // Vehículo anterior de la misma categoría
+        $anterior = $vehiculoModel
+            ->where('categoriaVehiculo', $categoria)
+            ->where('idVehiculo <', $id)
+            ->orderBy('idVehiculo', 'DESC')
+            ->first();
+
+        // Vehículo siguiente de la misma categoría
+        $siguiente = $vehiculoModel
+            ->where('categoriaVehiculo', $categoria)
+            ->where('idVehiculo >', $id)
+            ->orderBy('idVehiculo', 'ASC')
+            ->first();
+
+        return view('detalle', [
+            'vehiculo'  => $vehiculo,
+            'anterior'  => $anterior,
+            'siguiente' => $siguiente
+        ]);
     }
     
 }

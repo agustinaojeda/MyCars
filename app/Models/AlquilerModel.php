@@ -12,7 +12,8 @@ class AlquilerModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['idClienteAlquiler','idVehiculoAlquiler','fechaDesdeAlquiler','cantDiasAlquiler','fechaHastaAlquiler','estadoAlquiler'];
+    protected $allowedFields    = ['idClienteAlquiler','idVehiculoAlquiler','fechaDesdeAlquiler','cantDiasAlquiler','fechaHastaAlquiler','estadoAlquiler', 'nombreConductor',
+    'formaPago'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

@@ -24,3 +24,8 @@ $routes->get('admin/aprobar-reserva/(:num)', 'Admin::confirmarReserva/$1');
 $routes->get('vehiculos','Usuario::index');
 
 $routes->get('categoria/(:segment)', 'Vehiculo::categoria/$1');
+
+$routes->get('categoria/detalle/(:num)', 'Vehiculo::detalle/$1');
+
+$routes->get('reserva/(:num)', 'Alquiler::nuevo/$1');
+$routes->post('alquiler/guardar', 'Alquiler::guardar');
