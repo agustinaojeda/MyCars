@@ -105,9 +105,12 @@
     <div class="container">
         <div class="row justify-content-center px-3">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 glass-card">
-
                 <div class="mb-4">
-                    <h2 class="fw-bold text-white h3 mb-1">¡Bienvenido de nuevo!</h2>
+                    <a href="<?= base_url('/') ?>" class="text-decoration-none"><h1 class="fw-bold text-white h3 mb-1 text-center">MyCars</h1></a>
+                    
+                </div>
+                <div class="mb-4">
+                    <h2 class="fw-bold text-white h4 mb-1">¡Bienvenido de nuevo!</h2>
                     <p class="text-secondary small">Por favor completa con tus datos de inicio de sesión.</p>
                 </div>
 

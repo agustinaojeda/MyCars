@@ -6,9 +6,7 @@
         <div class="navbar-collapse justify-content-between">
 
             <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('vehiculos') ?>">Vehículos</a>
-                </li>
+                
             </ul>
 
             <ul class="navbar-nav align-items-center">
