@@ -20,6 +20,15 @@ $routes->get('admin/reservas-pendientes', 'Admin::reservasPendientes');
 
 // Ruta para procesar la aprobación de una reserva individual
 $routes->get('admin/aprobar-reserva/(:num)', 'Admin::confirmarReserva/$1');
+// Ruta para ver el detalle de una reserva específica
+$routes->get('admin/reserva-detalle/(:num)', 'Admin::detalleReserva/$1');
+
+// Ruta para rechazar una reserva
+$routes->get('admin/rechazar-reserva/(:num)', 'Admin::rechazarReserva/$1');
+$routes->get('admin/devoluciones', 'Admin::devoluciones');
+$routes->get('admin/confirmar-devolucion/(:num)', 'Admin::confirmarDevolucion/$1');
+// Ruta para el reporte de alquileres activos
+$routes->get('admin/reporte-activos', 'Admin::reporteActivos');
 
 $routes->get('vehiculos','Usuario::index');
 

@@ -7,6 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/css/admin.css') ?>">
+    <style>
+        /* Anulamos el efecto de movimiento de la tarjeta para esta vista de tabla */
+        .no-hover-card:hover {
+            transform: none !important;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+        }
+    </style>
 </head>
 <body>
     <?= view('templates/nav') ?>
@@ -29,7 +36,7 @@
             </div>
         <?php endif; ?>
 
-        <div class="glass-card p-0">
+        <div class="glass-card no-hover-card p-0">
             <?php if (!empty($reservas)) : ?>
                 <div class="table-responsive">
                     <table class="table table-dark table-hover mb-0" style="background: transparent;">
@@ -39,7 +46,7 @@
                                 <th class="p-4 text-secondary font-monospace" style="background: transparent;">Vehículo</th>
                                 <th class="p-4 text-secondary font-monospace" style="background: transparent;">Cliente</th>
                                 <th class="p-4 text-secondary font-monospace" style="background: transparent;">Fechas</th>
-                                <th class="p-4 text-secondary font-monospace text-end" style="background: transparent;">Acción</th>
+                                <th class="p-4 text-secondary font-monospace text-end" style="background: transparent;">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,9 +67,14 @@
                                         <div class="small text-secondary">Días: <?= $reserva['cantDiasAlquiler'] ?></div>
                                     </td>
                                     <td class="p-4 align-middle text-end" style="background: transparent;">
-                                        <a href="<?= base_url('admin/aprobar-reserva/' . $reserva['idAlquiler']) ?>" class="btn btn-purple btn-sm py-2 px-3">
-                                            Aprobar <i class="bi bi-check2 me-1"></i>
-                                        </a>
+                                        <div class="d-flex justify-content-end gap-2">
+                                            <a href="<?= base_url('admin/reserva-detalle/' . $reserva['idAlquiler']) ?>" class="btn btn-outline-custom btn-sm py-2 px-3">
+                                                <i class="bi bi-eye me-1"></i>Detalles
+                                            </a>
+                                            <a href="<?= base_url('admin/aprobar-reserva/' . $reserva['idAlquiler']) ?>" class="btn btn-purple btn-sm py-2 px-3">
+                                                <i class="bi bi-check2 me-1"></i>Aprobar
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
