@@ -298,4 +298,89 @@ class Admin extends BaseController
     {
         return view('Admin/crear-vehiculo');
     }
+
+    public function guardarVehiculo()
+{
+        $vehiculoModel = new VehiculoModel();
+        $mensajes = [
+            'marcaVehiculo' => [
+                'required' => 'La marca es obligatoria.',
+                'min_length' => 'La marca debe tener al menos 2 caracteres.',
+                'regex_match' => 'La marca solo puede contener letras, espacios y guiones.'
+            ],
+            'modeloVehiculo' => [
+                'required' => 'El modelo es obligatorio.'
+            ],
+            'anioVehiculo' => [
+                'required' => 'El año es obligatorio.',
+                'exact_length' => 'El año debe tener 4 dígitos.',
+                'greater_than' => 'El año debe ser mayor a 1900.'
+            ],
+            'motorVehiculo' => [
+                'required' => 'El motor es obligatorio.'
+            ],
+            'kilometrajeVehiculo' => [
+                'required' => 'El kilometraje es obligatorio.',
+                'numeric' => 'Debe ser un número válido.'
+            ],
+            'precioAlqVehiculo' => [
+                'required' => 'El precio es obligatorio.',
+                'numeric' => 'Debe ser un número válido.',
+                'greater_than' => 'El precio debe ser mayor a 0.'
+            ],
+            'nroPlazasVehiculo' => [
+                'required' => 'La cantidad de plazas es obligatoria.',
+                'numeric' => 'Debe ser un número válido.'
+            ],
+            'imagenVehiculo' => [
+                'uploaded' => 'Debe seleccionar una imagen.',
+                'is_image' => 'El archivo debe ser una imagen.',
+                'max_size' => 'La imagen no puede superar los 2 MB.'
+            ]
+        ];
+
+        $reglas = [
+            'marcaVehiculo' => 'required|min_length[2]|regex_match[/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s\-]+$/]',
+            'modeloVehiculo' => 'required|min_length[1]',
+            'anioVehiculo' => 'required|exact_length[4]|greater_than[1900]',
+            'motorVehiculo' => 'required',
+            'kilometrajeVehiculo' => 'required|numeric',
+            'precioAlqVehiculo' => 'required|numeric|greater_than[0]',
+            'nroPlazasVehiculo' => 'required|numeric',
+            'imagenVehiculo' => 'uploaded[imagenVehiculo]|is_image[imagenVehiculo]|max_size[imagenVehiculo,2048]'
+        ];
+
+        if (!$this->validate($reglas, $mensajes)) {
+            return redirect()->back()
+            ->withInput()
+            ->with('errors', $this->validator->getErrors());
+        }
+        $nombreImagen = '';
+
+        $imagen = $this->request->getFile('imagenVehiculo');
+
+        if ($imagen->isValid() && !$imagen->hasMoved()) {
+            $nombreImagen = $imagen->getRandomName();
+            $imagen->move(FCPATH . 'assets/images', $nombreImagen);
+        }
+
+        $datos = [
+            'marcaVehiculo' => $this->request->getPost('marcaVehiculo'),
+            'modeloVehiculo' => $this->request->getPost('modeloVehiculo'),
+            'anioVehiculo' => $this->request->getPost('anioVehiculo'),
+            'nroPlazasVehiculo' => $this->request->getPost('nroPlazasVehiculo'),
+            'motorVehiculo' => $this->request->getPost('motorVehiculo'),
+            'kilometrajeVehiculo' => $this->request->getPost('kilometrajeVehiculo'),
+            'precioAlqVehiculo' => $this->request->getPost('precioAlqVehiculo'),
+            'categoriaVehiculo' => $this->request->getPost('categoriaVehiculo'),
+            'imagenVehiculo' => $nombreImagen,
+            'disponibleVehiculo' => 1,
+            'activoVehiculo' => 1
+        ];
+
+        $vehiculoModel->insert($datos);
+
+        return redirect()->to(base_url('admin/gestionar-vehiculos'))
+                        ->with('mensaje', 'Vehículo registrado correctamente.');
+    }
 }

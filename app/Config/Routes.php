@@ -34,7 +34,6 @@ $routes->get('admin/reporte-clientes-vehiculo', 'Admin::reporteClientesVehiculo'
 // Ruta para el reporte de vehículos por cliente
 $routes->get('admin/reporte-vehiculos-cliente', 'Admin::reporteVehiculosCliente');
 
-
 $routes->get('vehiculos', 'Usuario::index');
 
 $routes->get('admin/gestionar-usuarios', 'Admin::gestionarUsuarios');
@@ -47,6 +46,7 @@ $routes->get('admin/vehiculos/baja/(:num)', 'Admin::bajaLogicaVehiculo/$1');
 $routes->get('admin/vehiculos/editar/(:num)', 'Admin::editarVehiculo/$1');
 $routes->post('admin/vehiculos/actualizar/(:num)', 'Admin::actualizarVehiculo/$1');
 $routes->get('admin/vehiculos/crear', 'Admin::crearVehiculo');
+$routes->post('admin/vehiculos/guardar', 'Admin::guardarVehiculo');
 
 $routes->get('vehiculos','Usuario::index');
 
