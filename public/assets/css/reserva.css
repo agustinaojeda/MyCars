@@ -1,5 +1,5 @@
 .reserva-card{
-    background: #1f2937;
+    background: #0b1324;
     color: #fff;
     border-radius: 28px;
     border: 1px solid rgba(255,255,255,.08);
@@ -7,7 +7,7 @@
     overflow: hidden;
 }
 .reserva-header{
-    background: #1f2937;
+    background: #0b1324;
     color: white;
     padding: 20px 28px;
     border-bottom: 2px solid #0dcaf0;
