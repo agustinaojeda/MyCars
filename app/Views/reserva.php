@@ -138,9 +138,10 @@
                                 name="fechaDesde"
                                 class="form-control"
                                 min="<?= date('Y-m-d') ?>"
+                                value="<?= old('fechaDesde') ?>"
                                 required>
                                 <?php if(isset($errors['fechaDesde'])): ?>
-                                    <small class="text-danger">
+                                    <small class="text-danger error-msg">
                                         <?= $errors['fechaDesde'] ?>
                                     </small>
                                 <?php endif; ?>
@@ -158,9 +159,10 @@
                                 name="cantDias"
                                 min="1"
                                 class="form-control"
+                                value="<?= old('cantDias') ?>"
                                 required>
                                 <?php if(isset($errors['cantDias'])): ?>
-                                    <small class="text-danger">
+                                    <small class="text-danger error-msg">
                                         <?= $errors['cantDias'] ?>
                                     </small>
                                 <?php endif; ?>
@@ -179,9 +181,10 @@
                                 placeholder="Ingrese su nombre"
                                 minlength="3"
                                 maxlength="100"
+                                value="<?= old('nombreConductor') ?>"
                                 required>
                                 <?php if(isset($errors['nombreConductor'])): ?>
-                                    <small class="text-danger">
+                                    <small class="text-danger error-msg">
                                         <?= $errors['nombreConductor'] ?>
                                     </small>
                                 <?php endif; ?>
@@ -200,13 +203,17 @@
 
                                 <option value="">Seleccione una opción</option>
                                 <option value="Tarjeta de crédito">Tarjeta de crédito</option>
+                                <?= old('formaPago') == 'Tarjeta de crédito' ? 'selected' : '' ?>>
                                 <option value="Tarjeta de débito">Tarjeta de débito</option>
+                                <?= old('formaPago') == 'Tarjeta de débito' ? 'selected' : '' ?>>
                                 <option value="Transferencia">Transferencia</option>
+                                <?= old('formaPago') == 'Transferencia' ? 'selected' : '' ?>>
                                 <option value="Efectivo">Efectivo</option>
+                                <?= old('formaPago') == 'Efectivo' ? 'selected' : '' ?>>
 
                             </select>
                             <?php if(isset($errors['formaPago'])): ?>
-                                <small class="text-danger">
+                                <small class="text-danger error-msg">
                                     <?= $errors['formaPago'] ?>
                                 </small>
                             <?php endif; ?>
@@ -259,6 +266,10 @@
                             </div>
 
                         </div>
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle"></i>
+                            La reserva será enviada y quedará pendiente hasta ser aprobada por un administrador.
+                        </div>
 
                         <div class="d-flex justify-content-between">
 
@@ -274,7 +285,7 @@
                                 type="submit"
                                 class="btn btn-confirmar">
 
-                                Confirmar Reserva
+                                Enviar Reserva
 
                             </button>
 
@@ -333,6 +344,25 @@ inputFecha.addEventListener('change', actualizarResumen);
 inputPago.addEventListener('change', actualizarResumen);
 inputNombre.addEventListener('input', actualizarResumen);
 actualizarResumen();
+</script>
+<script>
+document.querySelectorAll("input, select").forEach(campo => {
+    campo.addEventListener("input", function () {
+        let error = this.parentElement.querySelector(".error-msg");
+
+        if (error) {
+            error.style.display = "none";
+        }
+    });
+
+    campo.addEventListener("change", function () {
+        let error = this.parentElement.querySelector(".error-msg");
+
+        if (error) {
+            error.style.display = "none";
+        }
+    });
+});
 </script>
 </body>
 </html>    

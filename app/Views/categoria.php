@@ -49,6 +49,14 @@
 /** @var array $capacidad */
 ?>
 <div class="container mt-4">
+    <?php if(session()->getFlashdata('mensaje')): ?>
+    <div class="alert alert-success alert-dismissible fade show">
+        <?= session()->getFlashdata('mensaje') ?>
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"></button>
+    </div>
+    <?php endif; ?>
 
     <div class="d-flex align-items-center gap-3 mb-2">
 

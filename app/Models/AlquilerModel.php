@@ -26,7 +26,7 @@ class AlquilerModel extends Model
 
     public function registrarAlquiler(array $datos)
     {
-        $datos['estadoAlquiler'] = 'activo';
+        $datos['estadoAlquiler'] = 'pendiente';
 
         $fechaDesde = new \DateTime($datos['fechaDesdeAlquiler']);
         $fechaDesde->modify('+' . $datos['cantDiasAlquiler'] . ' days');
@@ -36,9 +36,9 @@ class AlquilerModel extends Model
 
         $this->insert($datos);
 
-        $this->db->table('vehiculo')
-                 ->where('idVehiculo', $datos['idVehiculoAlquiler'])
-                 ->update(['disponibleVehiculo' => 0]);
+        //$this->db->table('vehiculo')
+                // ->where('idVehiculo', $datos['idVehiculoAlquiler'])
+                // ->update(['disponibleVehiculo' => 0]);
 
         $this->db->transComplete();
 
@@ -91,7 +91,7 @@ class AlquilerModel extends Model
         // Función para obtener las reservas pendientes cruzando datos con usuarios y vehículos
     public function obtenerReservasPendientes()
     {
-        return $this->select('alquileres.*, usuario.nombreUsuario, usuario.emailUsuario, vehiculo.marcaVehiculo, vehiculo.modeloVehiculo, vehiculo.imagenVehiculo')
+        return $this->select('alquileres.*, alquileres.nombreConductor, usuario.nombreUsuario, usuario.emailUsuario, vehiculo.marcaVehiculo, vehiculo.modeloVehiculo, vehiculo.imagenVehiculo')
                     ->join('usuario', 'alquileres.idClienteAlquiler = usuario.idUsuario')
                     ->join('vehiculo', 'alquileres.idVehiculoAlquiler = vehiculo.idVehiculo')
                     ->where('alquileres.estadoAlquiler', 'pendiente')
@@ -101,8 +101,33 @@ class AlquilerModel extends Model
     // Función para que el administrador apruebe la reserva
     public function aprobarReserva($idAlquiler)
     {
+        $alquiler = $this->find($idAlquiler);
+
+        if (!$alquiler) {
+            return false;
+        }
+
+        $this->db->transStart();
+
+        // Activar alquiler
+        $this->update($idAlquiler, [
+            'estadoAlquiler' => 'activo'
+        ]);
+
+        // Marcar vehículo como no disponible
+        $this->db->table('vehiculo')
+                ->where('idVehiculo', $alquiler['idVehiculoAlquiler'])
+                ->update([
+                    'disponibleVehiculo' => 0
+                ]);
+
+        $this->db->transComplete();
+
+        return $this->db->transStatus();
+
+
         // Cambiamos el estado de pendiente a activo
-        return $this->update($idAlquiler, ['estadoAlquiler' => 'activo']);
+        //return $this->update($idAlquiler, ['estadoAlquiler' => 'activo']);
     }
 
     // Función para ver el detalle completo de un solo alquiler

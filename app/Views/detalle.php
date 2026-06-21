@@ -140,11 +140,22 @@
 
                 <?php endif; ?>
 
+                <?php if ($vehiculo['disponibleVehiculo'] == 1) : ?>
+
                 <a href="<?= base_url('reserva/'.$vehiculo['idVehiculo']) ?>"
-                   class="btn btn-reservar w-100 mt-3">
+                class="btn btn-reservar w-100 mt-3">
                     <i class="bi bi-calendar-check me-2"></i>
                     Realizar reserva
                 </a>
+
+                <?php else : ?>
+
+                    <button class="btn btn-secondary w-100 mt-3" disabled>
+                        <i class="bi bi-x-circle me-2"></i>
+                        Vehículo no disponible
+                    </button>
+
+                <?php endif; ?>
 
             </div>
 

@@ -29,6 +29,10 @@ class Alquiler extends BaseController
         if (!$vehiculo) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
+        if ($vehiculo['disponibleVehiculo'] == 0) {
+            return redirect()->to(base_url('vehiculos'))
+                            ->with('error', 'El vehículo no se encuentra disponible.');
+        }
 
         return view('reserva', [
             'vehiculo' => $vehiculo
@@ -117,9 +121,12 @@ class Alquiler extends BaseController
     $resultado = $this->alquilerModel->registrarAlquiler($datos);
 
     if ($resultado) {
-        return redirect()->to('vehiculos')
-            ->with('mensaje', 'Reserva registrada correctamente.');
-    }
+    return redirect()->to('categoria/' . strtolower($vehiculo['categoriaVehiculo']))
+        ->with(
+            'mensaje',
+            'La reserva fue enviada correctamente. Quedará pendiente hasta que sea aprobada por un administrador.'
+        );
+}
     
     return redirect()->back()
         ->with('error', 'No se pudo registrar la reserva.');
