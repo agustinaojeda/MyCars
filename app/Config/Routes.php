@@ -56,3 +56,5 @@ $routes->get('categoria/detalle/(:num)', 'Vehiculo::detalle/$1');
 
 $routes->get('reserva/(:num)', 'Alquiler::nuevo/$1');
 $routes->post('alquiler/guardar', 'Alquiler::guardar');
+
+$routes->get('mis-reservas', 'Alquiler::misReservas');

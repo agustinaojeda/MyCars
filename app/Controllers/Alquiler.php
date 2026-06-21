@@ -131,4 +131,15 @@ class Alquiler extends BaseController
     return redirect()->back()
         ->with('error', 'No se pudo registrar la reserva.');
 }
+public function misReservas()
+{
+    if (!session()->get('isLoggedIn')) {
+        return redirect()->to('/login');
+    }
+
+    $datos['reservas'] = $this->alquilerModel
+                              ->obtenerReservasCliente(session()->get('idUsuario'));
+
+    return view('mis_reservas', $datos);
+}
 }

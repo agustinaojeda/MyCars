@@ -98,6 +98,18 @@ class AlquilerModel extends Model
                     ->findAll();
     }
 
+    public function obtenerReservasCliente($idCliente)
+    {
+        return $this->select('alquileres.*, vehiculo.marcaVehiculo,
+                            vehiculo.modeloVehiculo,
+                            vehiculo.imagenVehiculo,
+                            vehiculo.precioAlqVehiculo')
+                    ->join('vehiculo', 'alquileres.idVehiculoAlquiler = vehiculo.idVehiculo')
+                    ->where('alquileres.idClienteAlquiler', $idCliente)
+                    ->orderBy('idAlquiler', 'DESC')
+                    ->findAll();
+    }
+
     // Función para que el administrador apruebe la reserva
     public function aprobarReserva($idAlquiler)
     {
