@@ -44,7 +44,7 @@
         <?php
         $vehiculosLimitados = array_slice($vehiculos, 0, 5);
         ?>
-        <div id="carruselVehiculos" class="carousel slide shadow-lg rounded-bottom-4 overflow-hidden" data-bs-ride="carousel" style="max-width: 100%; margin: 0 auto; height:70vh;">
+        <div id="carruselVehiculos" class="carousel slide shadow-lg rounded-bottom-4 overflow-hidden" data-bs-ride="carousel" style="max-width: 100%; margin: 0 auto; height:80vh;">
 
             <div class="carousel-indicators">
                 <?php foreach ($vehiculosLimitados as $index => $v) : ?>
@@ -54,7 +54,7 @@
 
             <div class="carousel-inner" style="background-color: #0b0f19;">
                 <?php foreach ($vehiculosLimitados as $index => $v) : ?>
-                    <div class="carousel-item <?= $index === 0 ? 'active' : '' ?> position-relative" style="height: 70vh;">
+                    <div class="carousel-item <?= $index === 0 ? 'active' : '' ?> position-relative" style="height: 80vh;">
 
                         <img src="<?= base_url('assets/images/' . $v['imagenVehiculo']) ?>" class="d-block w-100 h-100" alt="<?= $v['modeloVehiculo'] ?>" style="object-fit: cover; object-position: center;">
 

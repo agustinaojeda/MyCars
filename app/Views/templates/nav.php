@@ -3,9 +3,9 @@
 
         <a class="navbar-brand fw-bold" href="<?= base_url('/') ?>">MyCar</a>
         <?php if (session()->get('isLoggedIn') && session()->get('rolUsuario') == 'cliente'): ?>
-            <a class="nav-link d-inline-block text-light ms-3"
+            <a class="text-white-50 text-decoration-none small transition-all"
                 href="<?= base_url('mis-reservas') ?>">
-                    Mis Reservas
+                    Mis reservas
             </a>
         <?php endif; ?>
         <div class="navbar-collapse justify-content-between">

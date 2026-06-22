@@ -202,14 +202,26 @@
                                 required>
 
                                 <option value="">Seleccione una opción</option>
-                                <option value="Tarjeta de crédito">Tarjeta de crédito</option>
-                                <?= old('formaPago') == 'Tarjeta de crédito' ? 'selected' : '' ?>>
-                                <option value="Tarjeta de débito">Tarjeta de débito</option>
-                                <?= old('formaPago') == 'Tarjeta de débito' ? 'selected' : '' ?>>
-                                <option value="Transferencia">Transferencia</option>
-                                <?= old('formaPago') == 'Transferencia' ? 'selected' : '' ?>>
-                                <option value="Efectivo">Efectivo</option>
-                                <?= old('formaPago') == 'Efectivo' ? 'selected' : '' ?>>
+
+                                <option value="Tarjeta de crédito"
+                                    <?= old('formaPago') == 'Tarjeta de crédito' ? 'selected' : '' ?>>
+                                    Tarjeta de crédito
+                                </option>
+
+                                <option value="Tarjeta de débito"
+                                    <?= old('formaPago') == 'Tarjeta de débito' ? 'selected' : '' ?>>
+                                    Tarjeta de débito
+                                </option>
+
+                                <option value="Transferencia"
+                                    <?= old('formaPago') == 'Transferencia' ? 'selected' : '' ?>>
+                                    Transferencia
+                                </option>
+
+                                <option value="Efectivo"
+                                    <?= old('formaPago') == 'Efectivo' ? 'selected' : '' ?>>
+                                    Efectivo
+                                </option>
 
                             </select>
                             <?php if(isset($errors['formaPago'])): ?>
@@ -273,12 +285,9 @@
 
                         <div class="d-flex justify-content-between">
 
-                            <a
-                                href="<?= previous_url() ?>"
-                                class="btn btn-outline-secondary rounded-pill px-4">
-
+                            <a href="<?= base_url('categoria/detalle/'.$vehiculo['idVehiculo']) ?>"
+                            class="btn btn-outline-secondary rounded-pill px-4">
                                 Cancelar
-
                             </a>
 
                             <button

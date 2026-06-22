@@ -54,8 +54,8 @@
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h1 class="fw-bold text-white">
-                <i class="bi bi-car-front-fill text-info"></i>
+            <h1 class="fw-bold text-white mb-1">
+                <i class="bi bi-car-front me-2 text-info"></i>
                 Registrar Vehículo
             </h1>
             <p class="text-secondary">
@@ -168,7 +168,7 @@
                     <div class="col-md-6">
 
                         <div class="mb-3">
-                            <label class="form-label text-light">Motor</label>
+                            <label class="form-label text-light">Motor (Ej: 2.0 Turbo)</label>
                             <input type="text"
                                    name="motorVehiculo"
                                    class="form-control bg-dark text-light border-secondary"
@@ -195,7 +195,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label text-light">Precio por día</label>
+                            <label class="form-label text-light">Precio de Alquiler por Día ($)</label>
                             <input type="number"
                                    step="0.01"
                                    name="precioAlqVehiculo"
@@ -209,7 +209,7 @@
                         </div>
 
                        <div class="mb-3">
-                            <label class="form-label text-light">Imagen</label>
+                            <label class="form-label text-light">Imagen del Auto</label>
 
                             <input type="file"
                                 id="imagenVehiculo"
@@ -227,7 +227,7 @@
                 <hr class="border-secondary">
 
                 <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-info px-5">
+                    <button type="submit" class="btn btn-purple px-4">
                         Guardar Vehículo
                     </button>
 

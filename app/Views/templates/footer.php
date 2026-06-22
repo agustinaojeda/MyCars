@@ -16,6 +16,11 @@
                 <p class="mb-2">
                     <a href="<?=base_url('categoria/suv')?>" class="text-white-50 text-decoration-none small transition-all footer-link">Categorías</a>
                 </p>
+                <p class="mb-2">
+                    <?php if (session()->get('isLoggedIn') && session()->get('rolUsuario') == 'cliente'): ?>
+                        <a href="<?=base_url('mis-reservas')?>" class="text-white-50 text-decoration-none small transition-all footer-link">Mis reservas</a>
+                    <?php endif; ?>
+                </p>
             </div>
             
 
