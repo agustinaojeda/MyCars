@@ -228,7 +228,8 @@ class Admin extends BaseController
             'anioVehiculo'       => 'required|exact_length[4]|greater_than[1900]',
             'precioAlqVehiculo'  => 'required|numeric|greater_than[0]',
             'kilometrajeVehiculo' => 'required|numeric|greater_than[0]',
-            'motorVehiculo'     => 'required'
+            'motorVehiculo'     => 'required',
+            'nroPlazasVehiculo' => 'required|numeric|greater_than[0]|less_than[10]'
         ];
 
         $mensajes = [
@@ -237,7 +238,8 @@ class Admin extends BaseController
             'anioVehiculo'   => ['required' => 'El año es obligatorio.', 'exact_length' => 'Debe tener 4 dígitos.','greater_than' => 'El año del vehículo debe ser mayor a 1900.'],
             'precioAlqVehiculo' => ['required' => 'El precio es obligatorio.', 'numeric' => 'Debe ser un número válido.','greater_than' => 'El precio de alquiler debe ser mayor a $0.'],
             'kilometrajeVehiculo' => ['required' => 'El kilometraje es obligatorio.', 'numeric' => 'Debe ser un número válido.','greater_than' => 'El kilometraje debe ser mayor a 0.'],
-            'motorVehiculo' => ['required' => 'El tipo de motor es obligatorio.']
+            'motorVehiculo' => ['required' => 'El tipo de motor es obligatorio.'],
+            'nroPlazasVehiculo' => ['required' => 'El numero de plazas es obligatorio.', 'numeric' => 'Debe ser un número válido.','greater_than' => 'El número de plazas debe ser mayor a 0.','less_than' => 'El número de plazas debe ser menor a 10.']
         ];
 
         $file = $this->request->getFile('imagenVehiculo');
@@ -261,6 +263,7 @@ class Admin extends BaseController
             'motorVehiculo'       => $this->request->getPost('motorVehiculo'),
             'kilometrajeVehiculo' => $this->request->getPost('kilometrajeVehiculo'),
             'precioAlqVehiculo'   => $this->request->getPost('precioAlqVehiculo'),
+            'nroPlazasVehiculo'   => $this->request->getPost('nroPlazasVehiculo')
         ];
 
         if ($file && $file->isValid() && !$file->hasMoved()) {

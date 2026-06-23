@@ -104,10 +104,18 @@
                         <?= validation_show_error('kilometrajeVehiculo') ? '<span class="text-danger small" style="font-size: 0.72rem;"><i class="bi bi-exclamation-circle me-1"></i>' . validation_show_error('kilometrajeVehiculo') . '</span>' : '' ?>
                     </div>
 
-                    <div class="col-12 d-flex flex-column gap-1">
+                    <div class="col-12 col-md-6 d-flex flex-column gap-1">
                         <label class="small fw-medium <?= (validation_errors() && isset(validation_errors()['precioAlqVehiculo'])) ? 'text-danger' : 'text-secondary' ?>" style="font-size: 0.75rem;">Precio de Alquiler por Día ($)</label>
                         <input type="number" name="precioAlqVehiculo" required value="<?= old('precioAlqVehiculo', $vehiculo['precioAlqVehiculo']) ?>" class="form-control form-control-custom py-2.5 rounded-3 <?= (validation_errors() && isset(validation_errors()['precioAlqVehiculo'])) ? 'is-invalid' : '' ?>">
+                        <?= validation_show_error('precioAlqVehiculo') ? '<span class="text-danger small" style="font-size: 0.72rem;"><i class="bi bi-exclamation-circle me-1"></i>' . validation_show_error('precioAlqVehiculo') . '</span>' : '' ?>
                     </div>
+                    <div class="col-12 col-md-6 d-flex flex-column gap-1">
+                        <label class="small fw-medium <?= (validation_errors() && isset(validation_errors()['nroPlazasVehiculo'])) ? 'text-danger' : 'text-secondary' ?>" style="font-size: 0.75rem;">Cantidad de plazas</label>
+                        <input type="number" name="nroPlazasVehiculo" required value="<?= old('nroPlazasVehiculo', $vehiculo['nroPlazasVehiculo']) ?>" class="form-control form-control-custom py-2.5 rounded-3 <?= (validation_errors() && isset(validation_errors()['nroPlazasVehiculo'])) ? 'is-invalid' : '' ?>">
+                        <?= validation_show_error('nroPlazasVehiculo') ? '<span class="text-danger small" style="font-size: 0.72rem;"><i class="bi bi-exclamation-circle me-1"></i>' . validation_show_error('nroPlazasVehiculo') . '</span>' : '' ?>
+                    </div>
+
+
 
                     <div class="col-12 d-flex flex-column gap-2 mt-2">
                         <label class="small fw-medium <?= (validation_errors() && isset(validation_errors()['imagenVehiculo'])) ? 'text-danger' : 'text-secondary' ?>" style="font-size: 0.75rem;">Imagen del Auto (Dejar vacío para conservar la actual)</label>
