@@ -29,10 +29,6 @@ class Alquiler extends BaseController
         if (!$vehiculo) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
-        if ($vehiculo['disponibleVehiculo'] == 0) {
-            return redirect()->to(base_url('vehiculos'))
-                            ->with('error', 'El vehículo no se encuentra disponible.');
-        }
 
         return view('reserva', [
             'vehiculo' => $vehiculo
@@ -96,17 +92,35 @@ class Alquiler extends BaseController
             ->with('error', 'Vehículo no encontrado.');
     }
 
-    if ($vehiculo['disponibleVehiculo'] == 0) {
-        return redirect()->back()
-            ->with('error', 'El vehículo no se encuentra disponible.');
-    }
-
-   if ($this->request->getPost('fechaDesde') < date('Y-m-d')) {
+    if ($this->request->getPost('fechaDesde') < date('Y-m-d')) {
         return redirect()->back()
             ->withInput()
             ->with('errors', [
                 'fechaDesde' => 'La fecha no puede ser anterior a hoy.'
             ]);
+    }
+
+    $fechaDesde = $this->request->getPost('fechaDesde');
+    $cantDias   = $this->request->getPost('cantDias');
+
+    $fechaHasta = date(
+        'Y-m-d',
+        strtotime($fechaDesde . ' + ' . $cantDias . ' days')
+    );
+
+    if (
+        $this->alquilerModel->existeCruceFechas(
+            $vehiculo['idVehiculo'],
+            $fechaDesde,
+            $fechaHasta
+        )
+    ) {
+        return redirect()->back()
+            ->withInput()
+            ->with(
+                'error',
+                'El vehículo ya se encuentra reservado para esas fechas.'
+            );
     }
 
     $datos = [

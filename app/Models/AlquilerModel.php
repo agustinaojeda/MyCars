@@ -48,19 +48,14 @@ class AlquilerModel extends Model
     public function registrarDevolucion($idAlquiler)
     {
         $alquiler = $this->find($idAlquiler);
-        if (!$alquiler) return false;
 
-        $this->db->transStart();
+        if (!$alquiler) {
+            return false;
+        }
 
-        $this->update($idAlquiler, ['estadoAlquiler' => 'finalizado']);
-
-        $this->db->table('vehiculo')
-                 ->where('idVehiculo', $alquiler['idVehiculoAlquiler'])
-                 ->update(['disponibleVehiculo' => 1]);
-
-        $this->db->transComplete();
-
-        return $this->db->transStatus();
+        return $this->update($idAlquiler, [
+            'estadoAlquiler' => 'finalizado'
+        ]);
     }
 
     public function obtenerClientesPorVehiculo($idVehiculo)
@@ -118,28 +113,10 @@ class AlquilerModel extends Model
         if (!$alquiler) {
             return false;
         }
-
-        $this->db->transStart();
-
-        // Activar alquiler
-        $this->update($idAlquiler, [
+        return $this->update($idAlquiler, [
             'estadoAlquiler' => 'activo'
         ]);
 
-        // Marcar vehículo como no disponible
-        $this->db->table('vehiculo')
-                ->where('idVehiculo', $alquiler['idVehiculoAlquiler'])
-                ->update([
-                    'disponibleVehiculo' => 0
-                ]);
-
-        $this->db->transComplete();
-
-        return $this->db->transStatus();
-
-
-        // Cambiamos el estado de pendiente a activo
-        //return $this->update($idAlquiler, ['estadoAlquiler' => 'activo']);
     }
 
     // Función para ver el detalle completo de un solo alquiler
@@ -167,4 +144,15 @@ class AlquilerModel extends Model
                     ->where('alquileres.estadoAlquiler', 'activo')
                     ->findAll();
     }
+
+    public function existeCruceFechas($idVehiculo, $desde, $hasta)
+{
+    return $this->where('idVehiculoAlquiler', $idVehiculo)
+                ->whereIn('estadoAlquiler', ['pendiente', 'activo'])
+                ->groupStart()
+                    ->where('fechaDesdeAlquiler <=', $hasta)
+                    ->where('fechaHastaAlquiler >=', $desde)
+                ->groupEnd()
+                ->countAllResults() > 0;
+}
 }
