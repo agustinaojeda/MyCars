@@ -66,7 +66,10 @@
             <div class="col-12 col-md-4">
                 <div class="glass-card no-hover-card p-4 h-100">
                     <h5 class="text-white border-bottom border-secondary border-opacity-25 pb-2 mb-4"><i class="bi bi-car-front me-2 text-info"></i>Vehículo Solicitado</h5>
-                    
+                    <div class="mb-3">
+                        <span class="info-label">Conductor</span>
+                        <span class="info-value"><?= $reserva['nombreConductor'] ?>
+                    </div>
                     <div class="mb-3">
                         <span class="info-label">Modelo</span>
                         <span class="info-value"><?= $reserva['marcaVehiculo'] ?> <?= $reserva['modeloVehiculo'] ?></span>

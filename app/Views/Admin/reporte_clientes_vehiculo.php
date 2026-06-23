@@ -92,7 +92,7 @@
                 'suv' => 'SUV', 
                 'deportivo' => 'Deportivo', 
                 'sedan' => 'Sedán', 
-                'camioneta' => 'Camioneta'
+                'compacto' => 'Compacto'
             ];
             
             foreach ($categorias as $valor => $etiqueta): 

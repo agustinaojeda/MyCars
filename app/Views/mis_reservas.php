@@ -160,7 +160,7 @@
 
                                         <?php elseif($reserva['estadoAlquiler'] == 'activo'): ?>
                                             <span class="badge badge-activo">
-                                                Activo
+                                                Aprobada
                                             </span>
 
                                         <?php elseif($reserva['estadoAlquiler'] == 'finalizado'): ?>
