@@ -13,8 +13,8 @@ $routes->post('registrarse/verificar', 'AuthController::verificarRegistro');
 $routes->post('login/verificar', 'AuthController::verificar');
 $routes->get('logout', 'AuthController::logout');
 
-//$routes->get('admin/dashboard','Admin::panel',['filter' => 'soloAdmin']); POR AHORA lo dejo asi
-$routes->get('admin/dashboard', 'Admin::panel');
+// Panel principal protegido por el filtro de administrador
+$routes->get('admin/dashboard', 'Admin::panel', ['filter' => 'soloAdmin']);
 // Ruta para cargar la pantalla de listado de reservas
 $routes->get('admin/reservas-pendientes', 'Admin::reservasPendientes');
 
