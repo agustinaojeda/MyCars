@@ -155,4 +155,14 @@ class AlquilerModel extends Model
                 ->groupEnd()
                 ->countAllResults() > 0;
 }
+public function obtenerCruceFechas($idVehiculo, $desde, $hasta)
+{
+    return $this->where('idVehiculoAlquiler', $idVehiculo)
+                ->whereIn('estadoAlquiler', ['pendiente', 'activo'])
+                ->groupStart()
+                    ->where('fechaDesdeAlquiler <=', $hasta)
+                    ->where('fechaHastaAlquiler >=', $desde)
+                ->groupEnd()
+                ->first();
+}
 }

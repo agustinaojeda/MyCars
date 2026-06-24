@@ -108,18 +108,22 @@ class Alquiler extends BaseController
         strtotime($fechaDesde . ' + ' . $cantDias . ' days')
     );
 
-    if (
-        $this->alquilerModel->existeCruceFechas(
-            $vehiculo['idVehiculo'],
-            $fechaDesde,
-            $fechaHasta
-        )
-    ) {
+    $cruce = $this->alquilerModel->obtenerCruceFechas(
+    $vehiculo['idVehiculo'],
+    $fechaDesde,
+    $fechaHasta
+);
+
+    if ($cruce)
+    {
         return redirect()->back()
             ->withInput()
             ->with(
                 'error',
-                'El vehículo ya se encuentra reservado para esas fechas.'
+                'El vehículo ya está reservado desde '
+                . date('d/m/Y', strtotime($cruce['fechaDesdeAlquiler']))
+                . ' hasta '
+                . date('d/m/Y', strtotime($cruce['fechaHastaAlquiler']))
             );
     }
 
